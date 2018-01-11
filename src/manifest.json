@@ -1,6 +1,6 @@
 {
-  "name": "c",
-  "short_name": "c",
+  "name": "CardinalScout",
+  "short_name": "CardinalScout",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
