@@ -1,4 +1,4 @@
-import './style';
-import App from './containers/app';
+import "./style";
+import App from "./containers/app";
 
 export default App;

@@ -1,7 +1,7 @@
-import { h } from 'preact';
-import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
+import { h } from "preact";
+import { createDevTools } from "redux-devtools";
+import LogMonitor from "redux-devtools-log-monitor";
+import DockMonitor from "redux-devtools-dock-monitor";
 
 // createDevTools takes a monitor and produces a DevTools component
 const DevTools = createDevTools(
@@ -9,9 +9,10 @@ const DevTools = createDevTools(
   // Consult their repositories to learn about those props.
   // Here, we put LogMonitor inside a DockMonitor.
   // Note: DockMonitor is visible by default.
-  <DockMonitor toggleVisibilityKey="ctrl-h"
-	    changePositionKey="ctrl-q"
-	    defaultIsVisible
+  <DockMonitor
+    toggleVisibilityKey="ctrl-h"
+    changePositionKey="ctrl-q"
+    defaultIsVisible
   >
     <LogMonitor theme="tomorrow" />
   </DockMonitor>
