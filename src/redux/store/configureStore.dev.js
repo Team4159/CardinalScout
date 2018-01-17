@@ -1,29 +1,26 @@
+//@flow
 import { createStore, applyMiddleware, compose } from "redux";
 import { persistState } from "redux-devtools";
 import rootReducer from "../reducers";
-import { reactReduxFirebase } from "react-redux-firebase";
-import DevTools from "../containers/devtools";
-import firebase from "firebase";
-import { fbConfig, rrConfig } from "../config";
+import rootSaga from "../sagas";
+import DevTools from "../../containers/devtools";
 import createSagaMiddleware from "redux-saga";
 
-const sagaMiddleware = createSagaMiddleware();
-const enhancer = compose(
-  applyMiddleware(sagaMiddleware),
-  DevTools.instrument(),
-  persistState(getDebugSessionKey()),
-  reactReduxFirebase(fbConfig, rrConfig)
-)
-
-sagaMiddleware.run();
-firebase.initializeApp(fbConfig);
 function getDebugSessionKey() {
   const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
   return matches && matches.length > 0 ? matches[1] : null;
 }
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState: Object) {
+  const sagaMiddleware = createSagaMiddleware();
+  const enhancer = compose(
+    applyMiddleware(sagaMiddleware),
+    DevTools.instrument(),
+    persistState(getDebugSessionKey())
+  );
+
   const store = createStore(rootReducer, initialState, enhancer);
+  sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
     module.hot.accept("../reducers", () =>

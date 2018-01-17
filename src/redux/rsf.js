@@ -1,5 +1,5 @@
-import firebase from "firebase/app";
-
+import firebase from "firebase";
+import ReduxSagaFirebase from "redux-saga-firebase";
 export const fbConfig = {
   apiKey: "AIzaSyBMLD4eQE8P-CebtDUz3s2VgwpUtCCF0uM",
   authDomain: "cardinalscout-a6125.firebaseapp.com",
@@ -9,4 +9,6 @@ export const fbConfig = {
   messagingSenderId: "97280507952"
 };
 
-export const firebaseApp = firebase.initializeApp(fbConfig);
+const firebaseApp = firebase.initializeApp(fbConfig);
+const rsf = new ReduxSagaFirebase(firebaseApp);
+export default rsf;

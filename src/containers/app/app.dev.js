@@ -1,10 +1,12 @@
+//@flow
 import { h } from "preact";
+import * as React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import Home from "../../routes/home";
 import DevTools from "../devtools";
 
-import configureStore from "../../store";
+import configureStore from "../../redux/store";
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
