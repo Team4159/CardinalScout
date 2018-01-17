@@ -18,7 +18,6 @@
       ],
       "quotes": ["error", "double"],
       "semi": ["error", "always"],
-      "react/jsx-indent-props": [true, 2],
-      "arrow-parens": ["error", "always"]
+      "react/jsx-indent-props": [true, 2]
     }
 }

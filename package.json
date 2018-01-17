@@ -5,22 +5,25 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
+    "build": "preact build --no-prerender",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
     "pretty": "prettier ./.prettierrc --write \"src/**/**.js\" ",
-    "flow": "flow-typed run-tests"
+    "flow": "flow"
   },
   "browserslist": [
     "> 1%",
-    "IE >= 9",
     "last 2 versions"
   ],
   "eslintIgnore": [
     "build/*"
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/preset-env": "^7.0.0-beta.37",
+    "babel-plugin-async-to-promises": "^1.0.5",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.9.0",
@@ -35,20 +38,18 @@
     "preact-cli-plugin-flow": "^0.2.0",
     "prettier": "^1.10.2",
     "redux-devtools": "^3.4.1",
+    "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0"
   },
   "dependencies": {
     "firebase": "4.8.0",
-    "immutable": "^3.8.2",
     "preact": "^8.2.1",
     "preact-compat": "^3.17.0",
     "preact-material-components": "^1.2.4",
     "react-redux": "^5.0.6",
-    "react-redux-firebase": "^2.0.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
-    "redux-devtools-dock-monitor": "^1.1.3",
     "redux-saga": "^0.16.0",
     "redux-saga-firebase": "^0.9.0",
     "reselect": "^3.0.1"
