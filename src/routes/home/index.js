@@ -5,12 +5,17 @@ import style from "./style";
 import Login from "../../components/forms/login";
 
 import { connect } from "react-redux";
-import { login } from "../../redux/actions";
+import { loginRequest, logoutRequest } from "../../redux/actions/auth";
 
-const Home = ({ login, user, loggedIn }) => (
+const Home = ({ loginRequest, user, loggedIn, logoutRequest }) => (
   <div class={style.home}>
     <h1>Home route</h1>
-    <Login login={login} user={user} loggedIn={loggedIn} />
+    <Login
+      logout={logoutRequest}
+      login={loginRequest}
+      user={user ? user.displayName : "none"}
+      loggedIn={loggedIn}
+    />
   </div>
 );
 const mapStateToProps = state => ({
@@ -18,7 +23,8 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 const mapDispatchToProps = {
-  login
+  loginRequest,
+  logoutRequest
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
