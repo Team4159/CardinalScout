@@ -3,7 +3,7 @@ import { h } from "preact";
 import * as React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import Home from "../../routes/home";
+import Teleop from "../../routes/teleop";
 import DevTools from "../devtools";
 
 import configureStore from "../../redux/store";
@@ -17,7 +17,7 @@ const App = () => (
     <div id="app">
       <DevTools />
       <Router>
-        <Home path="/" />
+        <Teleop path="/" />
       </Router>
     </div>
   </Provider>
