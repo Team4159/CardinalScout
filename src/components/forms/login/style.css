@@ -5,5 +5,8 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-
+}
+.button{
+ --mdc-theme-primary: #E91E63;
+	background-color: var(--mdc-theme-primary);
 }

@@ -1,9 +1,7 @@
 //@flow
 import { createStore, applyMiddleware, compose } from "redux";
-//import { persistState } from "redux-devtools";
 import rootReducer from "../reducers";
 import rootSaga from "../sagas";
-import DevTools from "../../containers/devtools";
 import createSagaMiddleware from "redux-saga";
 
 /*function getDebugSessionKey() {
@@ -16,8 +14,7 @@ export default function configureStore(initialState: Object) {
   const sagaMiddleware = createSagaMiddleware();
   const enhancer = compose(
     applyMiddleware(sagaMiddleware),
-    DevTools.instrument()
-    //   persistState(getDebugSessionKey())
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   );
 
   const store = createStore(rootReducer, initialState, enhancer);

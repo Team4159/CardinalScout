@@ -1,7 +1,7 @@
 import firebase from "firebase";
-import { call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { call, fork, put, take, takeEvery, all } from "redux-saga/effects";
 
-import { types, login, syncUser } from "../actions/auth.js";
+import { types, login, syncUser, logout } from "../actions/auth.js";
 
 import rsf from "../rsf";
 
@@ -15,16 +15,28 @@ function* loginSaga() {
     yield put(login(error));
   }
 }
+function* logoutSaga() {
+  try {
+    const data = yield call(rsf.auth.signOut);
+    yield put(logout(data));
+  } catch (error) {
+    yield put(logout(error));
+  }
+}
 function* syncUserSaga() {
   const channel = yield call(rsf.auth.channel);
 
   while (true) {
-    const { user } = yield take(channel);
-    if (user) yield put(syncUser(user));
+    const data = yield take(channel);
+    
+    if (data.user !== null) yield put(syncUser(data.user));
     else yield put(syncUser(null));
   }
 }
 export default function* loginRootSaga() {
   yield fork(syncUserSaga);
-  yield takeEvery(types.LOGIN_REQUEST, loginSaga);
+  yield all([
+    takeEvery(types.LOGIN_REQUEST, loginSaga),
+    takeEvery(types.LOGOUT_REQUEST, logoutSaga)
+  ]);
 }
