@@ -1,11 +1,21 @@
+//@flow
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducers";
+import rootSaga from "../sagas";
+import createSagaMiddleware from "redux-saga";
 
-// Middleware you want to use in production:
-const enhancer = applyMiddleware();
+/*function getDebugSessionKey() {
 
-export default function configureStore(initialState) {
-  // Note: only Redux >= 3.1.0 supports passing enhancer as third argument.
-  // See https://github.com/rackt/redux/releases/tag/v3.1.0
-  return createStore(rootReducer, initialState, enhancer);
+  const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
+  return matches && matches.length > 0 ? matches[1] : null;
+}*/
+
+export default function configureStore(initialState: Object) {
+  const sagaMiddleware = createSagaMiddleware();
+  const enhancer = compose(applyMiddleware(sagaMiddleware));
+
+  const store = createStore(rootReducer, initialState, enhancer);
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }

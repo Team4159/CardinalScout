@@ -5,20 +5,23 @@ import { Provider } from "react-redux";
 import { Router } from "preact-router";
 import Home from "../../routes/home";
 import Header from "../../containers/header";
+import Teleop from "../../routes/teleop";
 import configureStore from "../../redux/store";
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
-type Props = {
-  handleRoute: Function
-};
+require("preact/devtools");
+
 const store = configureStore();
-const App = ({ handleRoute }: Props) => (
+const App = () => (
   <Provider store={store}>
     <div id="app">
       <Header />
-      <Router onChange={handleRoute}>
-        <Home path="/" />
-      </Router>
+      <div>
+        <Router>
+          <Home path="/" />
+          <Teleop path="/teleop" />
+        </Router>
+      </div>
     </div>
   </Provider>
 );

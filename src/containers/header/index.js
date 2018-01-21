@@ -1,24 +1,15 @@
-import { h } from "preact";
-import { route } from "preact-router";
-import Toolbar from "preact-material-components/Toolbar";
-import "preact-material-components/Toolbar/style.css";
+//@flow
+import Header from "./component";
+import { drawer } from "../../redux/actions/header";
+import { connect } from "react-redux";
 
-const Header = ({ openDrawer, openSettings }) => (
-  <div>
-    <Toolbar className="toolbar">
-      <Toolbar.Row>
-        <Toolbar.Section align-start>
-          <Toolbar.Icon menu onClick={openDrawer}>
-            menu
-          </Toolbar.Icon>
-          <Toolbar.Title>Preact app</Toolbar.Title>
-        </Toolbar.Section>
-        <Toolbar.Section align-end onClick={openSettings}>
-          <Toolbar.Icon>settings</Toolbar.Icon>
-        </Toolbar.Section>
-      </Toolbar.Row>
-    </Toolbar>
-  </div>
-);
+const mDTP = dispatch => ({
+  openDrawer: () => dispatch(drawer(true)),
+  closeDrawer: () => dispatch(drawer(false))
 
-export default Header;
+});
+const mSTP = state => ({
+  drawerState: state.header.drawerState
+});
+
+export default connect(mSTP, mDTP)(Header);

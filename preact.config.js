@@ -1,4 +1,6 @@
 const preactCliFlow = require("preact-cli-plugin-flow");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 export default function(config, env, helpers) {
   preactCliFlow(config);
   let rule = config.module.loaders.filter(
@@ -13,4 +15,6 @@ export default function(config, env, helpers) {
       regenerator: true
     }
   ]);
+  let plugins = config.plugins;
+  //  plugins.push(new BundleAnalyzerPlugin({ analyzerMode: "static" }));
 }

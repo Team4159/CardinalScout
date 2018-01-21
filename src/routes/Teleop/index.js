@@ -1,16 +1,12 @@
 import { h } from "preact";
-import style from "./style";
-import  Button from "preact-material-components/Button";
+import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
-
-
-
-
+import "preact-material-components/Theme/style.css";
 const Teleop = ({}) => (
-  <div class={style.teleop}>
-    <h1>Teleop</h1>
-    <h2>Pickup</h2>
-    <Button class={style.button} >} raised>field</Button>
+  <div>
+    <h1> teleop </h1>
+    <h2> Pickup </h2>
+    <Button raised>field</Button>
     <Button raised>pyramid</Button>
     <Button raised>portal</Button>
     <h3>Dropoff</h3>
@@ -31,11 +27,3 @@ const Teleop = ({}) => (
 );
 
 export default Teleop;
-
-
-
-
-
-
-
-

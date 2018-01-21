@@ -14,5 +14,5 @@ export const logoutRequest = createAction(types.LOGOUT_REQUEST);
 export const logout = createAction(types.LOGOUT, logoutStatus => logoutStatus);
 export const syncUser = createAction(
   types.SYNC_USER,
-  (user: Object): Object => user
+  (user: Object): Object => ({ user })
 );

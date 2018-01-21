@@ -30,8 +30,8 @@ const reducer = handleActions(
     },
     [types.SYNC_USER]: (state, action) => ({
       ...state,
-      loggedIn: action.payload !== null,
-      user: action.payload
+      loggedIn: action.payload.user !== null,
+      user: action.payload.user
     })
   },
   initalState
