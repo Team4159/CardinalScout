@@ -2,8 +2,9 @@ import { h } from "preact";
 import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import "preact-material-components/Theme/style.css";
+import style from "./style.css";
 const Teleop = ({}) => (
-  <div>
+  <div className={style.teleop}>
     <h1> teleop </h1>
     <h2> Pickup </h2>
     <Button raised>field</Button>

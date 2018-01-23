@@ -19,6 +19,10 @@
   "eslintIgnore": [
     "build/*"
   ],
+  "performance": {
+    "maxAssetSize": 650000,
+    "maxEntrypointSize": 650000
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.37",
     "@babel/preset-env": "^7.0.0-beta.37",
