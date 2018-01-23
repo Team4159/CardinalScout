@@ -5,9 +5,10 @@ import Timer from "../../components/timer";
 import style from "./style.css";
 
 import { connect } from "react-redux";
-import { start, stop, reset } from "../../redux/actions/func";
+import { start, stop, reset, record } from "../../redux/actions/func";
+import { loginRequest } from "../../redux/actions/auth";
 
-const Home = ({ time, start, stop, reset, status }) => (
+const Home = ({ time, start, stop, reset, status, record, login }) => (
   <div className={style.home}>
     <h1>Home Route</h1>
     <Timer
@@ -16,7 +17,9 @@ const Home = ({ time, start, stop, reset, status }) => (
       start={start}
       reset={reset}
       status={status}
+      record={() => record(time)}
     />
+    <button onClick={login}>login</button>
   </div>
 );
 
@@ -27,7 +30,9 @@ const mSTP = state => ({
 const mDTP = {
   start,
   stop,
-  reset
+  reset,
+  record,
+  login: loginRequest
 };
 
 export default connect(mSTP, mDTP)(Home);

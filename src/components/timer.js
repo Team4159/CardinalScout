@@ -1,6 +1,6 @@
 import { h } from "preact";
 
-const Timer = ({ start, stop, reset, time, status }) => (
+const Timer = ({ start, stop, reset, time, status, record }) => (
   <div>
     <p>{time}</p>
     <button disabled={status === "Running"} onClick={() => reset()}>
@@ -11,6 +11,9 @@ const Timer = ({ start, stop, reset, time, status }) => (
     </button>
     <button disabled={status === "Stopped"} onClick={stop}>
       Stop
+    </button>
+    <button disabled={status === "Stopped"} onClick={record}>
+      Record
     </button>
   </div>
 );

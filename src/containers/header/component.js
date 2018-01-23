@@ -8,7 +8,7 @@ import "preact-material-components/Toolbar/style.css";
 import "preact-material-components/Drawer/style.css";
 import "preact-material-components/Theme/style.css";
 
-const Header = ({ openDrawer, drawerState, closeDrawer }) => (
+const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
   <div>
     <Toolbar className="toolbar">
       <Toolbar.Row>
@@ -18,6 +18,9 @@ const Header = ({ openDrawer, drawerState, closeDrawer }) => (
           </Toolbar.Icon>
           <Toolbar.Title>Preact app</Toolbar.Title>
         </Toolbar.Section>
+        <Toolbar.Section align-end style={{ padding: "10px" }}>
+          <text> {loggedIn ? user.displayName : ""}</text>
+        </Toolbar.Section>
       </Toolbar.Row>
     </Toolbar>
     <Drawer.TemporaryDrawer open={drawerState} onClose={closeDrawer}>
@@ -25,11 +28,11 @@ const Header = ({ openDrawer, drawerState, closeDrawer }) => (
         <List>
           <List.LinkItem
             onClick={() => {
-              route("/teleop");
+              route("/");
               closeDrawer();
             }}
           >
-            <List.ItemIcon>Teleop</List.ItemIcon>
+            <List.ItemIcon>home</List.ItemIcon>
             Home
           </List.LinkItem>
         </List>
