@@ -17,7 +17,7 @@ const Teleop = ({}) => (
     <Button raised>fail</Button>
     <Button raised>fail</Button>
     <Button raised>epic fail</Button>
-    <h4>How was their pickup?(1=bad, 5=perfect)</h4>
+    <h4>How fast was their pickup?(1 = instant, 5 = 5 or more seconds)</h4>
     <Button raised>1</Button>
     <Button raised>2</Button>
     <Button raised>3</Button>
