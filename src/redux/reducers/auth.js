@@ -10,6 +10,7 @@ const initalState = {
 const reducer = handleActions(
   {
     [types.LOGIN_REQUEST]: (state, action) => ({
+      ...state,
       loading: true
     }),
     [types.LOGIN]: {

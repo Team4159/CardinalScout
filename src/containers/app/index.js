@@ -6,6 +6,7 @@ import { Router } from "preact-router";
 import Home from "../../routes/home";
 import Header from "../../containers/header";
 import Teleop from "../../routes/teleop";
+import Match from "../../routes/match";
 import Auto from "../../routes/auto";
 import configureStore from "../../redux/store";
 // import Home from 'async!../routes/home';
@@ -22,6 +23,7 @@ const App = () => (
           <Home path="/" />
           <Teleop path="/teleop" />
           <Auto path="/auto" />
+          <Match path="/match" />
         </Router>
       </div>
     </div>

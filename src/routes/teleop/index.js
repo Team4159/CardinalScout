@@ -3,6 +3,8 @@ import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import "preact-material-components/Theme/style.css";
 import style from "./style.css";
+import { connect } from "react-redux";
+
 const Teleop = ({}) => (
   <div className={style.teleop}>
     <h1> teleop </h1>

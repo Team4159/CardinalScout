@@ -35,6 +35,14 @@ const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
             <List.ItemIcon>home</List.ItemIcon>
             Home
           </List.LinkItem>
+          <List.LinkItem
+            onClick={() => {
+              route("/match");
+              closeDrawer();
+            }}
+          >
+            match
+          </List.LinkItem>
         </List>
       </Drawer.TemporaryDrawerContent>
     </Drawer.TemporaryDrawer>
