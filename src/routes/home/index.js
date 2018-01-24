@@ -1,6 +1,7 @@
 import { h } from "preact";
 import "preact-material-components/Card/style.css";
 import "preact-material-components/Button/style.css";
+import Upload from "material-ui-upload/Upload";
 import Timer from "../../components/timer";
 import style from "./style.css";
 
@@ -20,6 +21,7 @@ const Home = ({ time, start, stop, reset, status, record, login }) => (
       record={() => record(time)}
     />
     <button onClick={login}>login</button>
+    <Upload label="Add" onFileLoad={() => console.log("hello")} />
   </div>
 );
 
