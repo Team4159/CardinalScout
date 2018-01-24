@@ -1,6 +1,6 @@
 import { h } from "preact";
 import style from "./style";
-import  Button from "preact-material-components/Button";
+import Button from "preact-material-components/Button";
 import "preact-material-components/TextField/style.css";
 import TextField from "preact-material-components/TextField";
 import "preact-material-components/Button/style.css";

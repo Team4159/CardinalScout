@@ -3,7 +3,6 @@ import "preact-material-components/Card/style.css";
 import "preact-material-components/Button/style.css";
 import Timer from "../../components/timer";
 import style from "./style.css";
-
 import { connect } from "react-redux";
 import { start, stop, reset, record } from "../../redux/actions/func";
 import { loginRequest } from "../../redux/actions/auth";
