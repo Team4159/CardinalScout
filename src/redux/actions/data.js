@@ -9,7 +9,9 @@ export const types = {
   SWITCH_AUTO: "SWITCH_AUTO",
   SCALE_TELE: "SCALE_TELE",
   SWITCH_TELE: "SWITCH_TELE",
-  FIELD: "FIELD"
+  FIELD: "FIELD",
+  PYRAMID: "PYRAMID",
+  PORTAL: "PORTAL"
 };
 
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
@@ -32,3 +34,5 @@ export const switchTele = createAction(
   })
 );
 export const field = createAction(types.FIELD);
+export const pyramid = createAction(types.PYRAMID);
+export const portal = createAction(types.PORTAL);

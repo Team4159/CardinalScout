@@ -7,9 +7,9 @@ const intialState = {
   match: null,
   scaleAuto: null,
   switchAuto: null,
-  pyramid: [],
+  pyramid: 0,
   field: 0,
-  portal: [],
+  portal: 0,
   scaleTele: [],
   switchTele: [],
   vault: [],
@@ -48,6 +48,14 @@ const dataReducer = handleActions(
     [types.FIELD]: (state, action) => ({
       ...state,
       field: state.field + 1
+    }),
+    [types.PYRAMID]: (state, action) => ({
+      ...state,
+      pyramid: state.pyramid + 1
+    }),
+    [types.PORTAL]: (state, action) => ({
+      ...state,
+      portal: state.portal + 1
     })
   },
   intialState

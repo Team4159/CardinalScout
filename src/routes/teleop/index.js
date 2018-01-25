@@ -4,10 +4,10 @@ import "preact-material-components/Button/style.css";
 import "preact-material-components/Theme/style.css";
 import style from "./style.css";
 import { connect } from "react-redux";
-import { field } from "../../redux/actions/data";
+import { field, pyramid, portal } from "../../redux/actions/data";
 import { record } from "../../redux/actions/func";
 
-const Teleop = ({ seconds, handleField }) => (
+const Teleop = ({ seconds, handleField, handlePyramid, handlePortal }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
     <h1> teleop </h1>
@@ -16,8 +16,12 @@ const Teleop = ({ seconds, handleField }) => (
       <Button onClick={() => handleField(seconds)} raised>
         field
       </Button>
-      <Button raised>pyramid</Button>
-      <Button raised>portal</Button>
+      <Button onClick={() => handlePyramid(seconds)} raised>
+        pyramid
+      </Button>
+      <Button onClick={() => handlePortal(seconds)} raised>
+        portal
+      </Button>
     </div>
     <h3>Dropoff</h3>
     <div className={style.wrapper}>
@@ -49,6 +53,14 @@ const mDTP = dispatch => ({
   handleField: seconds => {
     dispatch(record(seconds));
     dispatch(field());
+  },
+  handlePyramid: seconds => {
+    dispatch(record(seconds));
+    dispatch(pyramid());
+  },
+  handlePortal: seconds => {
+    dispatch(record(seconds));
+    dispatch(portal());
   }
 });
 
