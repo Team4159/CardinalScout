@@ -8,7 +8,7 @@ const intialState = {
   scaleAuto: null,
   switchAuto: null,
   pyramid: [],
-  field: [],
+  field: 0,
   portal: [],
   scaleTele: [],
   switchTele: [],
@@ -44,6 +44,10 @@ const dataReducer = handleActions(
     [types.SWITCH_TELE]: (state, action) => ({
       ...state,
       switchTele: action.payload.seconds
+    }),
+    [types.FIELD]: (state, action) => ({
+      ...state,
+      field: state.field + 1
     })
   },
   intialState

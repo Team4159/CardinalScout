@@ -8,7 +8,8 @@ export const types = {
   SCALE_AUTO: "SCALE_AUTON",
   SWITCH_AUTO: "SWITCH_AUTO",
   SCALE_TELE: "SCALE_TELE",
-  SWITCH_TELE: "SWITCH_TELE"
+  SWITCH_TELE: "SWITCH_TELE",
+  FIELD: "FIELD"
 };
 
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
@@ -30,3 +31,4 @@ export const switchTele = createAction(
     seconds
   })
 );
+export const field = createAction(types.FIELD);

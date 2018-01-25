@@ -4,29 +4,52 @@ import "preact-material-components/Button/style.css";
 import "preact-material-components/Theme/style.css";
 import style from "./style.css";
 import { connect } from "react-redux";
+import { field } from "../../redux/actions/data";
+import { record } from "../../redux/actions/func";
 
-const Teleop = ({}) => (
+const Teleop = ({ seconds, handleField }) => (
   <div className={style.teleop}>
+    <text> {seconds} </text>
     <h1> teleop </h1>
     <h2> Pickup </h2>
-    <Button raised>field</Button>
-    <Button raised>pyramid</Button>
-    <Button raised>portal</Button>
+    <div className={style.wrapper}>
+      <Button onClick={() => handleField(seconds)} raised>
+        field
+      </Button>
+      <Button raised>pyramid</Button>
+      <Button raised>portal</Button>
+    </div>
     <h3>Dropoff</h3>
-    <Button raised>scale</Button>
-    <Button raised>switch</Button>
-    <Button raised>vault</Button>
-    <Button raised>fail</Button>
-    <Button raised>fail</Button>
-    <Button raised>fail</Button>
+    <div className={style.wrapper}>
+      <Button raised>scale</Button>
+      <Button raised>switch</Button>
+      <Button raised>vault</Button>
+    </div>
+    <div className={style.wrapper}>
+      <Button raised>fail</Button>
+      <Button raised>fail</Button>
+      <Button raised>fail</Button>
+    </div>
     <Button raised>epic fail</Button>
-    <h4>How was their pickup?(1=bad, 5=perfect)</h4>
-    <Button raised>1</Button>
-    <Button raised>2</Button>
-    <Button raised>3</Button>
-    <Button raised>4</Button>
-    <Button raised>5</Button>
+    <h4>How was their pickup? (1 = instant, 5 = five or more seconds)</h4>
+    <div className={style.wrapper}>
+      <Button raised>1</Button>
+      <Button raised>2</Button>
+      <Button raised>3</Button>
+      <Button raised>4</Button>
+      <Button raised>5</Button>
+    </div>
   </div>
 );
 
-export default Teleop;
+const mSTP = state => ({
+  seconds: state.func.seconds
+});
+const mDTP = dispatch => ({
+  handleField: seconds => {
+    dispatch(record(seconds));
+    dispatch(field());
+  }
+});
+
+export default connect(mSTP, mDTP)(Teleop);

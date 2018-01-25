@@ -19,8 +19,12 @@ const changeToTeleop = seconds => {
 const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
   <div className={style.auto}>
     <Timer seconds={seconds} />
-    <p>Crossed?</p>
-    <Switch onClick={() => crossAction(!crossed)} />
+    <div className={style.h1}>
+      <h1>Crossed?</h1>
+    </div>
+    <div className={style.switch}>
+      <Switch onClick={() => crossAction(!crossed)} />
+    </div>
     <div className={style.button}>
       <Button onClick={() => switchAuto(seconds)} stroked>
         Box into switch
