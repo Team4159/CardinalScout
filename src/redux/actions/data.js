@@ -24,15 +24,14 @@ export const switchAuto = createAction(
 export const scaleAuto = createAction(types.SCALE_AUTO, (seconds: number) => ({
   seconds
 }));
-export const scaleTele = createAction(types.SCALE_TELE, (seconds: number) => ({
-  seconds
+export const scaleTele = createAction(types.SCALE_TELE, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
 }));
-export const switchTele = createAction(
-  types.SWITCH_TELE,
-  (seconds: number) => ({
-    seconds
-  })
-);
+export const switchTele = createAction(types.SWITCH_TELE, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
 export const field = createAction(types.FIELD);
 export const pyramid = createAction(types.PYRAMID);
 export const portal = createAction(types.PORTAL);

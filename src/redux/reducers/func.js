@@ -1,10 +1,11 @@
-//@flow
 import { types } from "../actions/func";
 import { handleActions } from "redux-actions";
 const intialState = {
   status: "Stopped",
   seconds: 0,
-  lastTimeRecorded: 0
+  lastTimeRecorded: 0,
+  pickedUpFrom: "",
+  inBetweenRun: false
 };
 const funcReducer = handleActions(
   {
@@ -14,7 +15,11 @@ const funcReducer = handleActions(
     [types.RESET]: state => ({ ...state, seconds: 0 }),
     [types.RECORD]: (state, action) => ({
       ...state,
-      lastTimeRecorded: action.payload.seconds
+      lastTimeRecorded: action.payload.seconds,
+      pickedUpFrom: action.payload.pickedUpFrom
+    }),
+    [types.IN_BETWEEN_RUN]: (state, action) => ({
+      inBetweenRun: !state.inBetweenRun
     })
   },
   intialState

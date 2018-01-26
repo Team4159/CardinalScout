@@ -39,11 +39,11 @@ const dataReducer = handleActions(
     }),
     [types.SCALE_TELE]: (state, action) => ({
       ...state,
-      scaleTele: action.payload.seconds
+      scaleTele: [...state.scaleTele, action.payload]
     }),
     [types.SWITCH_TELE]: (state, action) => ({
       ...state,
-      switchTele: action.payload.seconds
+      switchTele: [...state.scaleTele, action.payload]
     }),
     [types.FIELD]: (state, action) => ({
       ...state,
