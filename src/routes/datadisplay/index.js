@@ -1,33 +1,21 @@
-import { h, Component } from "preact";
+//@flow
+import * as React from "react";
+import { h } from "preact";
 import List from "preact-material-components/List";
+import TextField from "preact-material-components/TextField";
 import "preact-material-components/List/style.css";
-import style from "./style.css";
-import { connect } from "react-redux";
-
-const DataDisplay = ({}) => (
-  <div className={style.datadisplay}>
-    <h1>Review and Edit Data</h1>
-    <h2>Auto</h2>
-    <List two-line>
-      <List.Item>crossed?</List.Item>
-      <List.Item>boxes into switch</List.Item>
-      <List.Item>boxes into scale</List.Item>
-    </List>
-    <h2>TeleOp</h2>
-    <List>
-      <List.Item />
-      <List.Item />
-      <List.Item />
-    </List>
-    <h2>Auto</h2>
-    <List>
-      <List.Item />
-      <List.Item />
-      <List.Item />
-    </List>
+import "preact-material-components/TextField/style.css";
+const Item = ({ text }) => (
+  <div>
+    <List.Item>{text}</List.Item>
+    <TextField />
   </div>
 );
+const DataDisplay = () => (
+  <List>
+    <List.Item>hello</List.Item>
+    <List.Item>world</List.Item>
+  </List>
+);
 
-const mSTP = state => ({});
-
-export default connect(mSTP)(DataDisplay);
+export default DataDisplay;

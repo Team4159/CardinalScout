@@ -1,4 +1,5 @@
-import { h, Component } from "preact";
+import * as React from "react";
+import { h } from "preact";
 import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import "preact-material-components/Theme/style.css";
@@ -17,10 +18,11 @@ import {
   failScale,
   failSwitch,
   failVault,
-  failEpic
+  failEpic,
+  pickup
 } from "../../redux/actions/data";
 import { record } from "../../redux/actions/func";
-
+import { route } from "preact-router";
 const Teleop = ({
   seconds,
   type,
@@ -33,7 +35,10 @@ const Teleop = ({
   handleScaleFail,
   handleSwitchFail,
   handleVaultFail,
-  handleEpicFail
+  handleEpicFail,
+  difference,
+  pickupRating,
+  pickup
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -60,54 +65,68 @@ const Teleop = ({
     <div className={style.wrapper}>
       <div className={style.pair}>
         <div className={style.button}>
-          <Button onClick={() => handleScale(seconds, type)} raised>
+          <Button onClick={() => handleScale(difference, type)} raised>
             scale
           </Button>
         </div>
         <div className={style.button}>
-          <Button onClick={() => handleScaleFail(seconds, type)} raised>
+          <Button onClick={() => handleScaleFail(difference, type)} raised>
             fail
           </Button>
         </div>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handleSwitch(seconds, type)} raised>
+        <Button onClick={() => handleSwitch(difference, type)} raised>
           switch
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handleVault(seconds, type)} raised>
+        <Button onClick={() => handleVault(difference, type)} raised>
           vault
         </Button>
       </div>
     </div>
     <div className={style.wrapper}>
       <div className={style.button}>
-        <Button onClick={() => handleSwitchFail(seconds, type)} raised>
+        <Button onClick={() => handleSwitchFail(difference, type)} raised>
           fail
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handleVaultFail(seconds, type)} raised>
+        <Button onClick={() => handleVaultFail(difference, type)} raised>
           fail
         </Button>
       </div>
     </div>
     <div className={style.button}>
-      <Button onClick={() => handleEpicFail(seconds, type)} raised>
+      <Button onClick={() => handleEpicFail(difference, type)} raised>
         epic fail
       </Button>
     </div>
     <h4>How was their pickup? (1 = instant, 5 = five or more seconds)</h4>
     <div className={style.slider}>
-      <Slider discrete step={1} value={3} min={1} max={5} />
+      <Slider
+        discrete
+        step={1}
+        min={1}
+        max={5}
+        value={pickupRating}
+        onInput={event => pickup(event.detail.value)}
+      />
+    </div>
+    <div className={style.button}>
+      <Button onClick={() => route("/dataDisplay")} raised>
+        SUBMIT
+      </Button>
     </div>
   </div>
 );
 
 const mSTP = state => ({
   seconds: state.func.seconds,
-  type: state.func.pickedUpFrom
+  type: state.func.pickedUpFrom,
+  difference: state.func.seconds - state.func.lastTimeRecorded,
+  pickupRating: state.data.pickupRating
 });
 const mDTP = dispatch => ({
   handleField: seconds => {
@@ -142,6 +161,9 @@ const mDTP = dispatch => ({
   },
   handleEpicFail: (seconds, type) => {
     dispatch(failEpic({ seconds, type }));
+  },
+  pickup: value => {
+    dispatch(pickup(value));
   }
 });
 

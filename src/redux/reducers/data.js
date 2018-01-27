@@ -17,7 +17,7 @@ const intialState = {
   failSwitch: [],
   failVault: [],
   failEpic: [],
-  pickupRating: null
+  pickupRating: 3
 };
 const dataReducer = handleActions(
   {
@@ -80,6 +80,10 @@ const dataReducer = handleActions(
     [types.PORTAL]: (state, action) => ({
       ...state,
       portal: state.portal + 1
+    }),
+    [types.PICKUP]: (state, action) => ({
+      ...state,
+      pickupRating: action.payload.value
     })
   },
   intialState

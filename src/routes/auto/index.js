@@ -8,11 +8,11 @@ import "preact-material-components/Switch/style.css";
 import { cross, scaleAuto, switchAuto } from "../../redux/actions/data";
 import { connect } from "react-redux";
 import Timer from "../../components/timer";
-import Redirect from "../../components/redirect";
-
+import { route } from "preact-router";
 const changeToTeleop = seconds => {
   if (seconds === 15) {
-    return <Redirect to="/teleop" />;
+    route("/teleop");
+    return null;
   }
   return null;
 };

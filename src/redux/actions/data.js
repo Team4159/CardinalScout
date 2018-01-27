@@ -16,7 +16,8 @@ export const types = {
   FAIL_SCALE: "FAIL_SCALE",
   FAIL_SWITCH: "FAIL_SWITCH",
   FAIL_VAULT: "FAIL_VAULT",
-  FAIL_EPIC: "FAIL_EPIC"
+  FAIL_EPIC: "FAIL_EPIC",
+  PICKUP: "PICKUP"
 };
 
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
@@ -61,3 +62,6 @@ export const failEpic = createAction(types.FAIL_EPIC, (o: Object) => ({
 export const field = createAction(types.FIELD);
 export const pyramid = createAction(types.PYRAMID);
 export const portal = createAction(types.PORTAL);
+export const pickup = createAction(types.PICKUP, (value: number) => ({
+  value
+}));
