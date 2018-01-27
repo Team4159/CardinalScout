@@ -4,13 +4,13 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  background: #fafafa;
-  font-family: "Helvetica Neue", arial, sans-serif;
+  background: #177f75;
+  font-family: "Space Mono", monospace;
   font-weight: 400;
-  color: #444;
+  color: #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --mdc-theme-primary: #bd2031;
+  --mdc-theme-primary: #8a0200;
 }
 
 /* fallback */

@@ -2,7 +2,9 @@
 import { h } from "preact";
 import * as React from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
 import { Router } from "preact-router";
+import { saveNewData } from "../../redux/actions/fb";
 import Home from "../../routes/home";
 import Header from "../../containers/header";
 import Teleop from "../../routes/teleop";
@@ -11,18 +13,21 @@ import configureStore from "../../redux/store";
 // import Profile from 'async!../routes/profile';
 require("preact/devtools");
 
-const store = configureStore();
+let { store, persistor } = configureStore();
+
 const App = () => (
   <Provider store={store}>
-    <div id="app">
-      <Header />
-      <div>
-        <Router>
-          <Home path="/" />
-          <Teleop path="/teleop" />
-        </Router>
+    <PersistGate loading={null} persistor={persistor}>
+      <div id="app">
+        <Header />
+        <div>
+          <Router>
+            <Home path="/" />
+            <Teleop path="/teleop" />
+          </Router>
+        </div>
       </div>
-    </div>
+    </PersistGate>
   </Provider>
 );
 export default App;

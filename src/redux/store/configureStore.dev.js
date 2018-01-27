@@ -1,5 +1,7 @@
 //@flow
 import { createStore, applyMiddleware, compose } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "localforage";
 import rootReducer from "../reducers";
 import rootSaga from "../sagas";
 import createSagaMiddleware from "redux-saga";
@@ -11,15 +13,22 @@ import createSagaMiddleware from "redux-saga";
 }*/
 
 export default function configureStore(initialState: Object) {
+  const persistConfig = {
+    key: "root",
+    storage
+  };
   const sagaMiddleware = createSagaMiddleware();
-  const enhancer = compose(
-    applyMiddleware(sagaMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const composeEnhancers =
+    global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const store = createStore(
+    persistedReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(sagaMiddleware))
   );
-
-  const store = createStore(rootReducer, initialState, enhancer);
+  const persistor = persistStore(store);
   sagaMiddleware.run(rootSaga);
-
   if (module.hot) {
     module.hot.accept("../reducers", () =>
       store.replaceReducer(
@@ -28,5 +37,5 @@ export default function configureStore(initialState: Object) {
     );
   }
 
-  return store;
+  return { store, persistor };
 }
