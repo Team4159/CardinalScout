@@ -9,9 +9,14 @@ export const types = {
   SWITCH_AUTO: "SWITCH_AUTO",
   SCALE_TELE: "SCALE_TELE",
   SWITCH_TELE: "SWITCH_TELE",
+  VAULT_TELE: "VAULT_TELE",
   FIELD: "FIELD",
   PYRAMID: "PYRAMID",
-  PORTAL: "PORTAL"
+  PORTAL: "PORTAL",
+  FAIL_SCALE: "FAIL_SCALE",
+  FAIL_SWITCH: "FAIL_SWITCH",
+  FAIL_VAULT: "FAIL_VAULT",
+  FAIL_EPIC: "FAIL_EPIC"
 };
 
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
@@ -29,6 +34,27 @@ export const scaleTele = createAction(types.SCALE_TELE, (o: Object) => ({
   pickedUpFrom: o.type
 }));
 export const switchTele = createAction(types.SWITCH_TELE, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
+export const vaultTele = createAction(types.VAULT_TELE, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
+//
+export const failScale = createAction(types.FAIL_SCALE, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
+export const failSwitch = createAction(types.FAIL_SWITCH, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
+export const failVault = createAction(types.FAIL_VAULT, (o: Object) => ({
+  seconds: o.seconds,
+  pickedUpFrom: o.type
+}));
+export const failEpic = createAction(types.FAIL_EPIC, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type
 }));

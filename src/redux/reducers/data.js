@@ -12,7 +12,11 @@ const intialState = {
   portal: 0,
   scaleTele: [],
   switchTele: [],
-  vault: [],
+  vaultTele: [],
+  failScale: [],
+  failSwitch: [],
+  failVault: [],
+  failEpic: [],
   pickupRating: null
 };
 const dataReducer = handleActions(
@@ -43,7 +47,27 @@ const dataReducer = handleActions(
     }),
     [types.SWITCH_TELE]: (state, action) => ({
       ...state,
-      switchTele: [...state.scaleTele, action.payload]
+      switchTele: [...state.switchTele, action.payload]
+    }),
+    [types.VAULT_TELE]: (state, action) => ({
+      ...state,
+      vaultTele: [...state.vaultTele, action.payload]
+    }),
+    [types.FAIL_SCALE]: (state, action) => ({
+      ...state,
+      failScale: [...state.failScale, action.payload]
+    }),
+    [types.FAIL_SWITCH]: (state, action) => ({
+      ...state,
+      failSwitch: [...state.failSwitch, action.payload]
+    }),
+    [types.FAIL_VAULT]: (state, action) => ({
+      ...state,
+      failVault: [...state.failVault, action.payload]
+    }),
+    [types.FAIL_EPIC]: (state, action) => ({
+      ...state,
+      failEpic: [...state.failEpic, action.payload]
     }),
     [types.FIELD]: (state, action) => ({
       ...state,
