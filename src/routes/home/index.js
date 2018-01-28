@@ -2,7 +2,6 @@ import { h } from "preact";
 import "preact-material-components/Card/style.css";
 import "preact-material-components/Button/style.css";
 import style from "./style.css";
-
 import { connect } from "react-redux";
 import { loginRequest, logoutRequest } from "../../redux/actions/auth";
 import { saveNewData } from "../../redux/actions/fb";
@@ -15,10 +14,7 @@ const Home = ({ login, logout, newData }) => (
   </div>
 );
 
-const mSTP = state => ({
-  time: state.func.seconds,
-  status: state.func.status
-});
+const mSTP = state => ({});
 const mDTP = {
   login: loginRequest,
   logout: logoutRequest,
