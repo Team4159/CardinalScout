@@ -6,10 +6,11 @@ export default function(config, env, helpers) {
   preactCliFlow(config);
   let alias = config.resolve.alias;
   //  console.log(__dirname);
-  alias["firebaseImport.browser.js"] = path.join(
+  alias["firebaseImport"] = path.join(
     __dirname,
     "/functions/firebaseImport.browser.js"
   );
+  console.log(alias);
   let rule = config.module.loaders.filter(
     loader => loader.loader === "babel-loader"
   )[0].options;
@@ -23,7 +24,6 @@ export default function(config, env, helpers) {
       regenerator: true
     }
   ]);
-  console.log(rule);
   let plugins = config.plugins;
   plugins.push(new BundleAnalyzerPlugin({ analyzerMode: "static" }));
 }

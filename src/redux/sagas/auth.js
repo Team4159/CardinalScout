@@ -6,7 +6,8 @@ import getRsf from "../rsf";
 
 function* loginSaga() {
   try {
-    const { authProvider, rsf } = yield call(getRsf);
+    const { auth, rsf } = yield call(getRsf);
+    const authProvider = new auth.GoogleAuthProvider();
     const data = yield call(rsf.auth.signInWithPopup, authProvider);
     yield put(login(data));
   } catch (error) {
