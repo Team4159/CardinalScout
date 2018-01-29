@@ -1,17 +1,18 @@
 import { call, fork, all, select, takeEvery } from "redux-saga/effects";
 import { types, syncData } from "../actions/fb";
-import rsf from "../rsf";
+import getRsf from "../rsf";
 function* saveNewData() {
+  const { rsf } = yield call(getRsf);
   const user = yield select(state => state.auth.user);
-  const newData = { hello: "hello", world: "world" };
-
+  const newData = yield select(state => state.data);
   yield call(rsf.database.create, "data", {
-    creator: user ? user.uid : null,
+    creator: user ? user.displayName : null,
     data: newData
   });
 }
 
 function* syncDataSaga() {
+  const { rsf } = yield call(getRsf);
   yield fork(rsf.database.sync, "data", {
     successActionCreator: syncData
   });

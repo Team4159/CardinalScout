@@ -1,5 +1,13 @@
 import { delay } from "redux-saga";
-import { put, take, actionChannel, race, call } from "redux-saga/effects";
+import {
+  put,
+  take,
+  actionChannel,
+  race,
+  call,
+  select,
+  all
+} from "redux-saga/effects";
 import { tick, types } from "../actions/func.js";
 
 function* runTimer() {
@@ -18,4 +26,11 @@ function* runTimer() {
     }
   }
 }
-export default runTimer;
+function* syncTimer() {
+  yield take("persist/REHYDRATE");
+  const status = yield select(state => state.func.status);
+  if (status === "Running") yield put({ type: types.START });
+}
+export default function* rootSaga() {
+  yield all([call(syncTimer), call(runTimer)]);
+}

@@ -8,7 +8,6 @@ import Button from "preact-material-components/Button";
 import "preact-material-components/TextField/style.css";
 import TextField from "preact-material-components/TextField";
 import "preact-material-components/Button/style.css";
-import "preact-material-components/Theme/style.css";
 
 const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
   <div class={style.match}>

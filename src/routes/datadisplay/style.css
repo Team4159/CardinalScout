@@ -1,4 +1,4 @@
-.home {
+.list {
   padding: 20px;
   min-height: 100%;
   width: 100%;
@@ -7,7 +7,9 @@
   justify-content: center;
   align-items: center;
 }
-.mdc-list {
-  border: 1px;
-  solid: #333;
+
+.item {
+  display: flex;
+  flex-direction: row;
+  --mdc-list-item-primary-text-ink-color: #fff;
 }
