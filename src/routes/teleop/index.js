@@ -21,7 +21,7 @@ import {
   failEpic,
   pickup
 } from "../../redux/actions/data";
-import { record } from "../../redux/actions/func";
+import { record, stop, reset } from "../../redux/actions/func";
 import { route } from "preact-router";
 const Teleop = ({
   seconds,
@@ -38,7 +38,8 @@ const Teleop = ({
   handleEpicFail,
   difference,
   pickupRating,
-  pickup
+  pickup,
+  onSubmit
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -115,7 +116,7 @@ const Teleop = ({
       />
     </div>
     <div className={style.button}>
-      <Button onClick={() => route("/dataDisplay")} raised>
+      <Button onClick={onSubmit} raised>
         SUBMIT
       </Button>
     </div>
@@ -164,6 +165,11 @@ const mDTP = dispatch => ({
   },
   pickup: value => {
     dispatch(pickup(value));
+  },
+  onSubmit: () => {
+    route("/datadisplay");
+    dispatch(stop());
+    dispatch(reset());
   }
 });
 
