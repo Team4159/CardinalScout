@@ -1,0 +1,7 @@
+{
+  "name": "cardinalscout-calculation-server",
+  "version": "1.0.0",
+  "description": "server for cardinal scout",
+  "main": "index.js",
+  "license": "MIT"
+}
