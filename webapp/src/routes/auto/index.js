@@ -26,7 +26,11 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
       <Switch onClick={() => crossAction(!crossed)} />
     </div>
     <div className={style.button}>
-      <Button onClick={() => switchAuto(seconds)} stroked>
+      <Button
+        onClick={() => switchAuto(seconds)}
+        stroked
+        className="mdc-theme-primary"
+      >
         Box into switch
       </Button>
     </div>

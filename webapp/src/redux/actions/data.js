@@ -17,7 +17,8 @@ export const types = {
   FAIL_SWITCH: "FAIL_SWITCH",
   FAIL_VAULT: "FAIL_VAULT",
   FAIL_EPIC: "FAIL_EPIC",
-  PICKUP: "PICKUP"
+  PICKUP: "PICKUP",
+  RESET: "RESET_DATA"
 };
 
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
@@ -65,3 +66,4 @@ export const portal = createAction(types.PORTAL);
 export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));
+export const reset = createAction(types.RESET);

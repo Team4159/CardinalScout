@@ -84,7 +84,8 @@ const dataReducer = handleActions(
     [types.PICKUP]: (state, action) => ({
       ...state,
       pickupRating: action.payload.value
-    })
+    }),
+    [types.RESET]: (state, action) => (intialState)
   },
   intialState
 );
