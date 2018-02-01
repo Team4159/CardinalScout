@@ -1,0 +1,64 @@
+$color_1: #fff;
+$font_family_1: "Space Mono", monospace;
+$font_family_2: "Material Icons";
+$background_color_1: #333;
+
+/* fallback */
+@font-face {
+	font-family: "Material Icons";
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format("woff2");
+}
+html {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #333;
+	font-family: $font_family_1;
+	font-weight: 400;
+	color: $color_1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	--mdc-theme-primary: #8a0200;
+}
+body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #333;
+	font-family: $font_family_1;
+	font-weight: 400;
+	color: $color_1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	--mdc-theme-primary: #8a0200;
+}
+.material-icons {
+	font-family: $font_family_2;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: "liga";
+	-webkit-font-smoothing: antialiased;
+}
+* {
+	box-sizing: border-box;
+}
+#app {
+	height: 100%;
+}
+.mdc-theme--dark {
+	background-color: $background_color_1;
+	color: $color_1;
+}
+
