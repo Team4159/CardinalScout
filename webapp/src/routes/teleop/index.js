@@ -21,7 +21,7 @@ import {
   failEpic,
   pickup
 } from "../../redux/actions/data";
-import { record, stop, reset } from "../../redux/actions/func";
+import { record, stop, reset, state } from "../../redux/actions/func";
 import { route } from "preact-router";
 const Teleop = ({
   seconds,
@@ -47,17 +47,17 @@ const Teleop = ({
     <h2> Pickup </h2>
     <div className={style.wrapper}>
       <div className={style.button}>
-        <Button onClick={() => handleField(seconds)} raised>
+        <Button onClick={() => handleField(seconds)} raised disabled={state.inBetweenRun}>
           field
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handlePyramid(seconds)} raised>
+        <Button onClick={() => handlePyramid(seconds)} raised disabled={state.inBetweenRun}>
           pyramid
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handlePortal(seconds)} raised>
+        <Button onClick={() => handlePortal(seconds)} raised disabled={state.inBetweenRun}>
           portal
         </Button>
       </div>
