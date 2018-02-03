@@ -3,5 +3,24 @@
   "version": "1.0.0",
   "description": "server for cardinal scout",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "pretty": "prettier ./.prettierrc --write \"./*.js\" "
+  },
+  "engines": {
+    "node": ">= 9.4"
+  },
+  "dependencies": {
+    "@firebase/app-types": "^0.1.0",
+    "firebase-admin": "^5.8.2",
+    "mathjs": "^3.20.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "1.10.2"
+  }
 }
