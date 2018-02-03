@@ -9,6 +9,7 @@ import Header from "../../containers/header";
 import Teleop from "../../routes/teleop";
 import Match from "../../routes/match";
 import Auto from "../../routes/auto";
+import Super from "../../routes/super";
 import DataDisplay from "../../routes/datadisplay";
 import configureStore from "../../redux/store";
 // import Home from 'async!../routes/home';
@@ -29,6 +30,7 @@ const App = () => (
             <Auto path="/auto" />
             <Match path="/match" />
             <DataDisplay path="/datadisplay" />
+            <Super path="/super" />
           </Router>
         </div>
       </div>
