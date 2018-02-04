@@ -19,6 +19,7 @@ const funcReducer = handleActions(
       pickedUpFrom: action.payload.pickedUpFrom
     }),
     [types.IN_BETWEEN_RUN]: (state, action) => ({
+      ...state,
       inBetweenRun: !state.inBetweenRun
     })
   },
