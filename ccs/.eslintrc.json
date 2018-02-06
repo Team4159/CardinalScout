@@ -2,6 +2,7 @@
     "plugins": ["node", "prettier"],
     "extends": ["eslint:recommended", "plugin:node/recommended", "plugin:prettier/recommended"],
     "rules": {
-        "node/exports-style": ["error", "module.exports"]
+        "node/exports-style": ["error", "module.exports"],
+        "no-console": "off"
     }
 }
