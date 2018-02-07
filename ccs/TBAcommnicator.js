@@ -13,7 +13,6 @@ async function fetchTBA() {
       }
     )
     let json = await res.json()
-    console.log(json)
     return json
   } catch (err) {
     console.err(err)
