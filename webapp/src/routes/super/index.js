@@ -1,7 +1,15 @@
 //@flow
 import { connect } from "react-redux";
-import Super from "./component";
-const mDTP = dispatch => ({});
-const mSTP = state => ({});
+import { force, levitate, boost } from "../../redux/actions/superdata";
 
-export default Super;
+import Super from "./component";
+const mDTP = dispatch => ({
+  forcePower: seconds => dispatch(force(seconds)),
+  levitatePower: seconds => dispatch(levitate(seconds)),
+  boostPower: seconds => dispatch(boost(seconds))
+});
+const mSTP = state => ({
+  seconds: state.func.seconds
+});
+
+export default connect(mSTP, mDTP)(Super);

@@ -1,7 +1,7 @@
 $color_1: #fff;
 $font_family_1: "Space Mono", monospace;
 $font_family_2: "Material Icons";
-$background_color_1: #333;
+$background_color_1: #232426;
 
 /* fallback */
 @font-face {
@@ -15,26 +15,26 @@ html {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #333;
+	background: #232426;
 	font-family: $font_family_1;
 	font-weight: 400;
 	color: $color_1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	--mdc-theme-primary: #8a0200;
+	--mdc-theme-primary: #dc4437;
 }
 body {
 	height: 100%;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #333;
+	background: #232426;
 	font-family: $font_family_1;
 	font-weight: 400;
 	color: $color_1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	--mdc-theme-primary: #8a0200;
+	--mdc-theme-primary: #dc4437;
 }
 .material-icons {
 	font-family: $font_family_2;

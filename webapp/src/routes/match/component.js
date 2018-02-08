@@ -1,5 +1,5 @@
 import { h } from "preact";
-import style from "./style.css";
+import style from "./style.scss";
 import Button from "preact-material-components/Button";
 import "preact-material-components/TextField/style.css";
 import TextField from "preact-material-components/TextField";
@@ -9,10 +9,12 @@ const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
   <div class={style.match}>
     <h1> Match</h1>
     <TextField
+      className={style.textfield}
       onChange={t => onTeamChange(t.target.value)}
       label="Team Number"
     />
     <TextField
+      className={style.textfield}
       onChange={t => onMatchChange(t.target.value)}
       label="Match Number"
     />
