@@ -1,4 +1,3 @@
-
 .auto {
   padding: 20px;
   min-height: 100%;
@@ -14,8 +13,11 @@
 }
 .button {
   padding: 15px;
-  --mdc-theme-primary: #fff;
+  .css-prop-override{
+    color: #fff;
+  }
 }
+
 .switch {
   padding: 15px;
 }

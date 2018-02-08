@@ -27,15 +27,6 @@ const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
     >
       Start Match (Standard Scout)
     </Button>
-    <Button
-      onClick={() => {
-        startTimer();
-        route("/super");
-      }}
-      raised
-    >
-      Start Match (Super Scout)
-    </Button>
   </div>
 );
 export default Match;

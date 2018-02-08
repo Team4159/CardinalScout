@@ -1,4 +1,4 @@
-import  { h }  from "preact";
+import { h } from "preact";
 import "preact-material-components/Button/style.css";
 import style from "./style.scss";
 import Button from "preact-material-components/Button";
@@ -27,7 +27,7 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
       <Button
         onClick={() => switchAuto(seconds)}
         stroked
-        className="mdc-theme-primary"
+        className={style["css-prop-override"]}
       >
         Box into switch
       </Button>

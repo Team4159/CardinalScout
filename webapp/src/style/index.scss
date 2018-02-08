@@ -1,3 +1,6 @@
+$mdc-theme-primary: #8a0200;
+$mdc-theme-secondary: #fff;
+$mdc-theme-background: #fff;
 $color_1: #fff;
 $font_family_1: "Space Mono", monospace;
 $font_family_2: "Material Icons";
@@ -21,7 +24,6 @@ html {
 	color: $color_1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	--mdc-theme-primary: #dc4437;
 }
 body {
 	height: 100%;
@@ -34,7 +36,7 @@ body {
 	color: $color_1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	--mdc-theme-primary: #dc4437;
+  --mdc-theme-primary: $mdc-theme-primary;
 }
 .material-icons {
 	font-family: $font_family_2;
