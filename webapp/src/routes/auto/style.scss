@@ -14,8 +14,12 @@
 }
 .button {
   padding: 15px;
-  --mdc-theme-primary: #fff;
+  --mdc-theme-primary: #dc4437;
+	/*mdc-button-ink-color   <-- text color should be white*/
+
 }
 .switch {
   padding: 15px;
+  --mdc-theme-primary: #fff;
+  --mdc-theme-secondary: #dc4437;
 }
