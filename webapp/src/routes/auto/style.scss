@@ -1,3 +1,4 @@
+@import "preact-material-components/Switch/_mixins.scss";
 .auto {
   padding: 20px;
   min-height: 100%;
@@ -6,19 +7,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.h1 {
-  padding: 0px;
-  align-items: center;
-}
-.button {
-  padding: 15px;
-  .css-prop-override{
-    color: #fff;
+  .button {
+    padding: 15px;
+    .css-prop-override {
+      color: #fff;
+    }
+  }
+  .h1 {
+    padding: 0px;
+    align-items: center;
+  }
+  .switch {
+    padding: 15px;
+    .override {
+      @include mdc-switch-track-color(#f44b42);
+    }
   }
 }
-
-.switch {
-  padding: 15px;
-}
-
