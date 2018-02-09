@@ -22,7 +22,8 @@ const mSTP = state => ({
   seconds: state.func.seconds,
   type: state.func.pickedUpFrom,
   difference: state.func.seconds - state.func.lastTimeRecorded,
-  pickupRating: state.data.pickupRating
+  pickupRating: state.data.pickupRating,
+  inBetweenRun: state.func.inBetweenRun
 });
 const mDTP = dispatch => ({
   handleField: seconds => {

@@ -22,7 +22,8 @@ const Teleop = ({
   difference,
   pickupRating,
   pickup,
-  onSubmit
+  onSubmit,
+  inBetweenRun
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -30,17 +31,29 @@ const Teleop = ({
     <h2> Pickup </h2>
     <div className={style.wrapper}>
       <div className={style.button}>
-        <Button onClick={() => handleField(seconds)} stroked>
+        <Button
+          disabled={inBetweenRun}
+          onClick={() => handleField(seconds)}
+          stroked
+        >
           field
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handlePyramid(seconds)} stroked>
+        <Button
+          disabled={inBetweenRun}
+          onClick={() => handlePyramid(seconds)}
+          stroked
+        >
           pyramid
         </Button>
       </div>
       <div className={style.button}>
-        <Button onClick={() => handlePortal(seconds)} stroked>
+        <Button
+          disabled={inBetweenRun}
+          onClick={() => handlePortal(seconds)}
+          stroked
+        >
           portal
         </Button>
       </div>
@@ -49,43 +62,71 @@ const Teleop = ({
     <div className={style.wrapper}>
       <div className={style.pair}>
         <div className={style.button}>
-          <Button onClick={() => handleScale(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleScale(difference, type)}
+            stroked
+          >
             scale
           </Button>
         </div>
         <div className={style.button}>
-          <Button onClick={() => handleScaleFail(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleScaleFail(difference, type)}
+            stroked
+          >
             fail
           </Button>
         </div>
       </div>
       <div className={style.pair}>
         <div className={style.button}>
-          <Button onClick={() => handleSwitch(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleSwitch(difference, type)}
+            stroked
+          >
             switch
           </Button>
         </div>
         <div className={style.button}>
-          <Button onClick={() => handleSwitchFail(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleSwitchFail(difference, type)}
+            stroked
+          >
             fail
           </Button>
         </div>
       </div>
       <div className={style.pair}>
         <div className={style.button}>
-          <Button onClick={() => handleVault(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleVault(difference, type)}
+            stroked
+          >
             vault
           </Button>
         </div>
         <div className={style.button}>
-          <Button onClick={() => handleVaultFail(difference, type)} stroked>
+          <Button
+            disabled={!inBetweenRun}
+            onClick={() => handleVaultFail(difference, type)}
+            stroked
+          >
             fail
           </Button>
         </div>
       </div>
     </div>
     <div className={style.button}>
-      <Button onClick={() => handleEpicFail(difference, type)} stroked>
+      <Button
+        disabled={!inBetweenRun}
+        onClick={() => handleEpicFail(difference, type)}
+        stroked
+      >
         drop
       </Button>
     </div>
