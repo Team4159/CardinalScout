@@ -15,10 +15,12 @@
   padding: 15px;
   .css-prop-override{
     color: #fff;
+    width: 170px;    
   }
 }
 
 .switch {
   padding: 15px;
+  --mdc-theme-secondary: #dc4437;
 }
 

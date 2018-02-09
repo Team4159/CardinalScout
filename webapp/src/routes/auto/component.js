@@ -33,7 +33,11 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
       </Button>
     </div>
     <div className={style.button}>
-      <Button onClick={() => scaleAuto(seconds)} stroked>
+      <Button
+        onClick={() => scaleAuto(seconds)}
+        stroked
+        className={style["css-prop-override"]}
+      >
         Box into scale
       </Button>
     </div>
