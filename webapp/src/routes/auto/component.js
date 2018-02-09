@@ -1,9 +1,9 @@
 import { h } from "preact";
-import "preact-material-components/Button/style.css";
 import style from "./style.scss";
 import Button from "preact-material-components/Button";
+import "preact-material-components/Switch/mdc-switch";
+import "preact-material-components/Button/mdc-button";
 import Switch from "preact-material-components/Switch";
-import "preact-material-components/Switch/style.css";
 import Timer from "../../components/timer";
 import { route } from "preact-router";
 const changeToTeleop = seconds => {
@@ -21,7 +21,10 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
       <h1>Crossed?</h1>
     </div>
     <div className={style.switch}>
-      <Switch onClick={() => crossAction(!crossed)} />
+      <Switch
+        className={style.override}
+        onClick={() => crossAction(!crossed)}
+      />
     </div>
     <div className={style.button}>
       <Button

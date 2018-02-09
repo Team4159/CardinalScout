@@ -1,0 +1,6 @@
+{
+"prettier.cssEnable": [
+    "css",
+    "sass"
+	]
+}
