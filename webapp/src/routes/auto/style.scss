@@ -7,20 +7,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .button {
-    padding: 15px;
-    .css-prop-override {
-      color: #fff;
-    }
-  }
-  .h1 {
-    padding: 0px;
-    align-items: center;
-  }
-  .switch {
-    padding: 15px;
-    .override {
-      @include mdc-switch-track-color(#f44b42);
-    }
+}
+.h1 {
+  padding: 0px;
+  align-items: center;
+}
+.button {
+  padding: 15px;
+  .css-prop-override{
+    color: #fff;
+    width: 170px;    
   }
 }
+
+.switch {
+  padding: 15px;
+  --mdc-theme-secondary: #dc4437;
+}
+

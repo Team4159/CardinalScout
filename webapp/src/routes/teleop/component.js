@@ -30,11 +30,18 @@ const Teleop = ({
     <h1> TeleOp </h1>
     <h2> Pickup </h2>
     <div className={style.wrapper}>
+      <img
+        src="https://visualpharm.com/assets/38/Basketball%20Field-595b40b75ba036ed117d916a.svg"
+        alt="Smiley face"
+        height="50"
+        width="50"
+      />
       <div className={style.button}>
         <Button
           disabled={inBetweenRun}
           onClick={() => handleField(seconds)}
           stroked
+          className={style["css-prop-override"]}
         >
           field
         </Button>
@@ -44,6 +51,7 @@ const Teleop = ({
           disabled={inBetweenRun}
           onClick={() => handlePyramid(seconds)}
           stroked
+          className={style["css-prop-override"]}
         >
           pyramid
         </Button>
@@ -53,6 +61,7 @@ const Teleop = ({
           disabled={inBetweenRun}
           onClick={() => handlePortal(seconds)}
           stroked
+          className={style["css-prop-override"]}
         >
           portal
         </Button>
@@ -66,6 +75,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleScale(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             scale
           </Button>
@@ -75,6 +85,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleScaleFail(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             fail
           </Button>
@@ -86,6 +97,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleSwitch(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             switch
           </Button>
@@ -95,6 +107,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleSwitchFail(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             fail
           </Button>
@@ -106,6 +119,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleVault(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             vault
           </Button>
@@ -115,6 +129,7 @@ const Teleop = ({
             disabled={!inBetweenRun}
             onClick={() => handleVaultFail(difference, type)}
             stroked
+            className={style["css-prop-override"]}
           >
             fail
           </Button>
@@ -126,6 +141,7 @@ const Teleop = ({
         disabled={!inBetweenRun}
         onClick={() => handleEpicFail(difference, type)}
         stroked
+        className={style["css-prop-override"]}
       >
         drop
       </Button>
@@ -139,10 +155,11 @@ const Teleop = ({
         max={5}
         value={pickupRating}
         onInput={event => pickup(event.detail.value)}
+        className={style["css-prop-override"]}
       />
     </div>
     <div className={style.button}>
-      <Button onClick={onSubmit} stroked>
+      <Button onClick={onSubmit} stroked className={style["css-prop-override"]}>
         SUBMIT
       </Button>
     </div>
