@@ -69,18 +69,6 @@ const dataReducer = handleActions(
       ...state,
       failEpic: [...state.failEpic, action.payload]
     }),
-    [types.FIELD]: (state, action) => ({
-      ...state,
-      field: state.field + 1
-    }),
-    [types.PYRAMID]: (state, action) => ({
-      ...state,
-      pyramid: state.pyramid + 1
-    }),
-    [types.PORTAL]: (state, action) => ({
-      ...state,
-      portal: state.portal + 1
-    }),
     [types.PICKUP]: (state, action) => ({
       ...state,
       pickupRating: action.payload.value

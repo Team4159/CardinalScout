@@ -60,9 +60,6 @@ export const failEpic = createAction(types.FAIL_EPIC, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type
 }));
-export const field = createAction(types.FIELD);
-export const pyramid = createAction(types.PYRAMID);
-export const portal = createAction(types.PORTAL);
 export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));

@@ -1,9 +1,6 @@
 //@flow
 import { connect } from "react-redux";
 import {
-  field,
-  pyramid,
-  portal,
   types,
   scaleTele,
   switchTele,
@@ -29,17 +26,14 @@ const mDTP = dispatch => ({
   handleField: seconds => {
     dispatch(record({ seconds, type: types.FIELD }));
     dispatch(inBetweenRun());
-    dispatch(field());
   },
   handlePyramid: seconds => {
     dispatch(record({ seconds, type: types.PYRAMID }));
     dispatch(inBetweenRun());
-    dispatch(pyramid());
   },
   handlePortal: seconds => {
     dispatch(record({ seconds, type: types.PORTAL }));
     dispatch(inBetweenRun());
-    dispatch(portal());
   },
   handleScale: (seconds, type) => {
     dispatch(scaleTele({ seconds, type }));
