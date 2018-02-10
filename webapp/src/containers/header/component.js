@@ -6,7 +6,6 @@ import { route } from "preact-router";
 import "preact-material-components/List/style.css";
 import "preact-material-components/Toolbar/style.css";
 import "preact-material-components/Drawer/style.css";
-import "preact-material-components/Theme/style.css";
 
 const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
   <div>
@@ -24,7 +23,7 @@ const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
       </Toolbar.Row>
     </Toolbar>
     <Drawer.TemporaryDrawer open={drawerState} onClose={closeDrawer}>
-      <Drawer.TemporaryDrawerContent>
+      <Drawer.TemporaryDrawerContent className="mdc-theme--primary-light-bg">
         <List>
           <List.LinkItem
             onClick={() => {
