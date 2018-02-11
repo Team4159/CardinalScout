@@ -1,9 +1,11 @@
 const fetch = require("node-fetch")
 
-async function fetchTBA() {
+async function fetchTeamsFromTBA(eventCode) {
   try {
     let res = await fetch(
-      "https://www.thebluealliance.com/api/v3/event/2017mttd/teams/simple",
+      "https://www.thebluealliance.com/api/v3/event/" +
+        eventCode +
+        "/teams/simple",
       {
         method: "GET",
         headers: {
@@ -20,5 +22,5 @@ async function fetchTBA() {
 }
 
 module.exports = {
-  fetchTBA
+  fetchTeamsFromTBA
 }
