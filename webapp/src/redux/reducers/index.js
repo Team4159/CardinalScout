@@ -4,11 +4,13 @@ import header from "./header";
 import func from "./func";
 import fb from "./fb";
 import data from "./data";
+import snack from "./snack";
 const rootReducer = combineReducers({
   auth,
   header,
   func,
   fb,
-  data
+  data,
+  snack
 });
 export default rootReducer;

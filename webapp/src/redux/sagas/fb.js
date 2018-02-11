@@ -1,5 +1,8 @@
-import { call, fork, all, select, takeEvery } from "redux-saga/effects";
+import { call, fork, all, select, takeEvery, put } from "redux-saga/effects";
+import { delay } from "redux-saga";
 import { types, syncData } from "../actions/fb";
+import { reset } from "../actions/data";
+import { message, showSnack } from "../actions/snack";
 import getRsf from "../rsf";
 function* saveNewData() {
   const { rsf } = yield call(getRsf);
@@ -9,6 +12,11 @@ function* saveNewData() {
     creator: user ? user.displayName : null,
     data: newData
   });
+  yield put(reset());
+  yield put(message("Data Successfully saved!"));
+  yield put(showSnack());
+  yield call(delay, 5000);
+  yield put(showSnack());
 }
 
 function* syncDataSaga() {
