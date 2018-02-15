@@ -29,46 +29,66 @@ const Teleop = ({
     <h1> TeleOp </h1>
     <h2> Pickup </h2>
     <div className={style.wrapper}>
-      <img
-        src="https://visualpharm.com/assets/38/Basketball%20Field-595b40b75ba036ed117d916a.svg"
-        alt="Smiley face"
-        height="50"
-        width="50"
-      />
-      <div className={style.button}>
-        <Button
-          disabled={inBetweenRun}
-          onClick={() => handleField(seconds)}
-          stroked
-          className={style["css-prop-override"]}
-        >
-          field
-        </Button>
+      <div className={style.pair}>
+        <div className={style.image}>
+          <img src="../../assets/images/fieldicon.png" height="30" width="30" />
+        </div>
+        <div className={style.button}>
+          <Button
+            disabled={inBetweenRun}
+            onClick={() => handleField(seconds)}
+            stroked
+            className={style["css-prop-override"]}
+          >
+            field
+          </Button>
+        </div>
       </div>
-      <div className={style.button}>
-        <Button
-          disabled={inBetweenRun}
-          onClick={() => handlePyramid(seconds)}
-          stroked
-          className={style["css-prop-override"]}
-        >
-          pyramid
-        </Button>
+      <div className={style.pair}>
+        <div className={style.image}>
+          <img
+            src="../../assets/images/pyramidicon.png"
+            height="30"
+            width="30"
+          />
+        </div>
+        <div className={style.button}>
+          <Button
+            disabled={inBetweenRun}
+            onClick={() => handlePyramid(seconds)}
+            stroked
+            className={style["css-prop-override"]}
+          >
+            pyramid
+          </Button>
+        </div>
       </div>
-      <div className={style.button}>
-        <Button
-          disabled={inBetweenRun}
-          onClick={() => handlePortal(seconds)}
-          stroked
-          className={style["css-prop-override"]}
-        >
-          portal
-        </Button>
+      <div className={style.pair}>
+        <div className={style.image}>
+          <img
+            src="../../assets/images/portalicon.png"
+            height="30"
+            width="30"
+          />
+        </div>
+        <div className={style.button}>
+          <Button
+            disabled={inBetweenRun}
+            onClick={() => handlePortal(seconds)}
+            stroked
+            className={style["css-prop-override"]}
+          >
+            portal
+          </Button>
+        </div>
       </div>
     </div>
     <h2>Dropoff</h2>
     <div className={style.wrapper}>
       <div className={style.pair}>
+        <div className={style.image}>
+          <img src="../../assets/images/scaleicon.png" height="30" width="30" />
+        </div>
         <div className={style.button}>
           <Button
             disabled={!inBetweenRun}
@@ -91,6 +111,13 @@ const Teleop = ({
         </div>
       </div>
       <div className={style.pair}>
+        <div className={style.image}>
+          <img
+            src="../../assets/images/switchicon.png"
+            height="30"
+            width="30"
+          />
+        </div>
         <div className={style.button}>
           <Button
             disabled={!inBetweenRun}
@@ -113,6 +140,9 @@ const Teleop = ({
         </div>
       </div>
       <div className={style.pair}>
+        <div className={style.image}>
+          <img src="../../assets/images/vaulticon.png" height="30" width="30" />
+        </div>
         <div className={style.button}>
           <Button
             disabled={!inBetweenRun}

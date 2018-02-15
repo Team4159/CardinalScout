@@ -26,23 +26,41 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
         onClick={() => crossAction(!crossed)}
       />
     </div>
-    <div className={style.button}>
-      <Button
-        onClick={() => switchAuto(seconds)}
-        stroked
-        className={style["css-prop-override"]}
-      >
-        Box into switch
-      </Button>
+    <div className={style.wrapper}>
+      <div className={style.pair}>
+        <div className={style.image}>
+          <img
+            src="../../assets/images/switchicon.png"
+            height="30"
+            width="30"
+          />
+        </div>
+        <div className={style.button}>
+          <Button
+            onClick={() => switchAuto(seconds)}
+            stroked
+            className={style["css-prop-override"]}
+          >
+            Box into switch
+          </Button>
+        </div>
+      </div>
     </div>
-    <div className={style.button}>
-      <Button
-        onClick={() => scaleAuto(seconds)}
-        stroked
-        className={style["css-prop-override"]}
-      >
-        Box into scale
-      </Button>
+    <div className={style.wrapper}>
+      <div className={style.pair}>
+        <div className={style.image}>
+          <img src="../../assets/images/scaleicon.png" height="30" width="30" />
+        </div>
+        <div className={style.button}>
+          <Button
+            onClick={() => scaleAuto(seconds)}
+            stroked
+            className={style["css-prop-override"]}
+          >
+            Box into scale
+          </Button>
+        </div>
+      </div>
     </div>
     {changeToTeleop(seconds)}
   </div>
