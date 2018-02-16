@@ -20,8 +20,20 @@ const addTeamsToFirebase = teams => {
   console.log("\n adding teams to firebase")
   teams.forEach(team => updateFirebaseWithTeam(team))
 }
+async function getFirebaseNormalData() {
+  try {
+    const data = await db
+      .ref("data/")
+      .once("value")
+      .then(snapshot => snapshot.val())
+    return data
+  } catch (e) {
+    console.error(e)
+  }
+}
 module.exports = {
   updateFirebaseWithTeam,
   updateFirebaseWithMatch,
-  addTeamsToFirebase
+  addTeamsToFirebase,
+  getFirebaseNormalData
 }
