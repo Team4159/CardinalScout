@@ -9,14 +9,16 @@ const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
   <div class={style.match}>
     <h1> Match</h1>
     <TextField
-      className={style.textfield}
+      className="mdc-theme--secondary-bg"
       onChange={t => onTeamChange(t.target.value)}
       label="Team Number"
+      box
     />
     <TextField
-      className={style.textfield}
+      className="mdc-theme--secondary-bg"
       onChange={t => onMatchChange(t.target.value)}
       label="Match Number"
+      box
     />
     <Button
       onClick={() => {

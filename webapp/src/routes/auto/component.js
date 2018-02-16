@@ -17,8 +17,9 @@ const changeToTeleop = seconds => {
 const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
   <div className={style.auto}>
     <Timer seconds={seconds} />
+    <h1> Auto </h1>
     <div className={style.h1}>
-      <h1>Crossed?</h1>
+      <h2>Crossed?</h2>
     </div>
     <div className={style.switch}>
       <Switch

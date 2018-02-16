@@ -1,12 +1,14 @@
 import { h } from "preact";
+import CssTransitionGroup from "preact-css-transition-group";
 import Button from "preact-material-components/Button";
 import TextField from "preact-material-components/TextField";
 import "preact-material-components/TextField/style.css";
+import "preact-material-components/Button/mdc-button.scss";
 import style from "./style.scss";
 
 const Item = ({ text, value }) => (
   <div>
-    <text>{text}</text>
+    <Button>{text}</Button>
     <TextField value={value} />
   </div>
 );
@@ -16,8 +18,14 @@ const DataDisplay = ({ d, onSubmit }) => (
       if (Array.isArray(d[key])) {
         return (
           <div>
-            <Item text={key} />
-            {d[key].map(k => <Item text={JSON.stringify(k) + ","} />)}
+            <Button>{key}</Button>
+            <CssTransitionGroup
+              transitionName={key}
+              transitionEnterTimeOut={300}
+              transitionLeaveTimeOut={300}
+            >
+              {d[key].map(k => <Item text={JSON.stringify(k) + ","} />)}
+            </CssTransitionGroup>
           </div>
         );
       }
