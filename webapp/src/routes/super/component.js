@@ -11,74 +11,119 @@ import "preact-material-components/List/style.css";
 import style from "./style.scss";
 import Timer from "../../components/timer";
 
-const Super = seconds => (
+const Team = ({ team }) => (
+  <div className={style.pair}>
+    <h1>{"team " + team}</h1>
+    <h2>notes</h2>
+    <p>text</p>
+    <div className={style.textfield}>
+      <TextField textarea className={style["css-prop-override"]} />
+    </div>
+    <p>driver skill</p>
+    <div>
+      <FormField>
+        <Radio id="toprating-1" name="Top Rating" />
+        <label for="toprating-1">1</label>
+      </FormField>
+      <FormField>
+        <Radio id="topratingy-2" name="Top Rating" />
+        <label for="toprating-2">2</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-3" name="Top Rating" />
+        <label for="toprating-3">3</label>
+      </FormField>
+    </div>
+    <p>defense</p>
+    <div>
+      <FormField>
+        <Radio id="toprating-1" name="Top Rating" />
+        <label for="toprating-1">1</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-2" name="Top Rating" />
+        <label for="toprating-2">2</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-3" name="Top Rating" />
+        <label for="toprating-3">3</label>
+      </FormField>
+    </div>
+    <p>scale control</p>
+    <div>
+      <FormField>
+        <Radio id="toprating-1" name="Top Rating" />
+        <label for="toprating-1">1</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-2" name="Top Rating" />
+        <label for="toprating-2">2</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-3" name="Top Rating" />
+        <label for="toprating-3">3</label>
+      </FormField>
+    </div>
+    <p>switch control</p>
+    <div>
+      <FormField>
+        <Radio id="toprating-1" name="Top Rating" />
+        <label for="toprating-1">1</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-2" name="Top Rating" />
+        <label for="toprating-2">2</label>
+      </FormField>
+      <FormField>
+        <Radio id="toprating-3" name="Top Rating" />
+        <label for="toprating-3">3</label>
+      </FormField>
+    </div>
+  </div>
+);
+const Super = ({ seconds, levitatePower, forcePower, boostPower }) => (
   <div className={style.super}>
     <Timer seconds={seconds} />
-    <div>
-      <h1>notes</h1>
-      <TextField textarea />
-      <h1>power ups</h1>
-      <Button onClick={() => forcePower(seconds)} raised ripple>
-        force
-      </Button>
-      <Button onClick={() => levitatePower(seconds)} raised ripple>
-        levitate
-      </Button>
-      <Button onClick={() => boostPower(seconds)} raised ripple>
-        boost
-      </Button>
-      <h1>driver skill</h1>
-      <p>
-        rate the drivers on the team you're evaluating relative to each other
-        from 1 to 3
-      </p>
+    <h1>match</h1>
+    <h2>general notes</h2>
+    <TextField textarea />
+    <h2>power ups</h2>
+    <div className={style.wrapper}>
+      <div className={style.button}>
+        <Button
+          className={style["css-prop-override"]}
+          onClick={() => forcePower(seconds)}
+          stroked
+          ripple
+        >
+          force
+        </Button>
+      </div>
+      <div className={style.button}>
+        <Button
+          className={style["css-prop-override"]}
+          onClick={() => levitatePower(seconds)}
+          stroked
+          ripple
+        >
+          levitate
+        </Button>
+      </div>
+      <div className={style.button}>
+        <Button
+          className={style["css-prop-override"]}
+          onClick={() => boostPower(seconds)}
+          stroked
+          ripple
+        >
+          boost
+        </Button>
+      </div>
     </div>
-    <div>
-      <div>
-        <p>Team 1</p>
-        <FormField>
-          <Radio id="toprating-1" name="Top Rating" />
-          <label for="toprating-1">1</label>
-        </FormField>
-        <FormField>
-          <Radio id="toprating-2" name="Top Rating" />
-          <label for="toprating-2">2</label>
-        </FormField>
-        <FormField>
-          <Radio id="toprating-3" name="Top Rating" />
-          <label for="toprating-3">3</label>
-        </FormField>
-      </div>
-      <div>
-        <p>Team 2</p>
-        <FormField>
-          <Radio id="midrating-1" name="Middle Rating" />
-          <label for="midrating-1">1</label>
-        </FormField>
-        <FormField>
-          <Radio id="midrating-2" name="Middle Rating" />
-          <label for="midrating-2">2</label>
-        </FormField>
-        <FormField>
-          <Radio id="midrating-3" name="Middle Rating" />
-          <label for="midrating-3">3</label>
-        </FormField>
-      </div>
-      <div>
-        <p>Team 3</p>
-        <FormField>
-          <Radio id="botrating-1" name="Bottom Rating" />
-          <label for="botrating-1">1</label>
-        </FormField>
-        <FormField>
-          <Radio id="botrating-2" name="Bottom Rating" />
-          <label for="botrating-2">2</label>
-        </FormField>
-        <FormField>
-          <Radio id="botrating-3" name="Bottom Rating" />
-          <label for="botrating-3">3</label>
-        </FormField>
-      </div>
+    <div className={style.wrapper}>
+      <Team team="1" />
+      <Team team="2" />
+      <Team team="3" />
     </div>
   </div>
 );
