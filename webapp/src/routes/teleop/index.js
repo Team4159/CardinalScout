@@ -9,7 +9,8 @@ import {
   failSwitch,
   failVault,
   failEpic,
-  pickup
+  pickup,
+  climb
 } from "../../redux/actions/data";
 import Teleop from "./component";
 import { record, stop, reset, inBetweenRun } from "../../redux/actions/func";
@@ -65,6 +66,7 @@ const mDTP = dispatch => ({
   pickup: value => {
     dispatch(pickup(value));
   },
+  climb: () => dispatch(climb()),
   onSubmit: () => {
     dispatch(push("/dataedit"));
     dispatch(stop());

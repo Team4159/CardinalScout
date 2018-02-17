@@ -8,7 +8,7 @@ function* saveNewData() {
   const { rsf } = yield call(getRsf);
   const user = yield select(state => state.auth.user);
   const newData = yield select(state => state.data);
-  yield call(rsf.database.create, "data", {
+  yield call(rsf.database.create, "data/" + user.uid, {
     creator: user ? user.displayName : null,
     data: newData
   });

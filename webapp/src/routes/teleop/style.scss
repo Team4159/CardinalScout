@@ -1,42 +1,42 @@
 .teleop {
-	padding: 20px;
-	min-height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-.wrapper {
-	display: flex;
-	flex-direction: row;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.button {
-	padding-right: 5px;
-	padding-left: 5px;
-	padding-bottom: 4px;
-	.css-prop-override {
-		color: #fff;
-		width: 100px;
-	}
-}
-.slider {
-	width: 25%;
-	--mdc-theme-primary: #dc4437;
-	--mdc-theme-secondary: #dc4437;
-	--mdc-theme-hint: #dc4437;
-	.css-prop-override {
-		color: #dc4437;
-	}
-}
-.pair {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-bottom: 5px;
-}
-.image {
-	padding-bottom: 5px;
+  padding: 20px;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .button {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    .css-prop-override {
+      color: #fff;
+      width: 100px;
+    }
+  }
+  .slider {
+    width: 25%;
+    --mdc-theme-primary: #dc4437;
+    --mdc-theme-secondary: #dc4437;
+    --mdc-theme-hint: #dc4437;
+    .css-prop-override {
+      color: #dc4437;
+    }
+  }
+  .pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+  .image {
+    padding-bottom: 5px;
+  }
 }

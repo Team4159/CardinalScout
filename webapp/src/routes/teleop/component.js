@@ -3,6 +3,8 @@ import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import style from "./style.scss";
 import Slider from "preact-material-components/Slider";
+import Switch from "preact-material-components/Switch";
+import "preact-material-components/Switch/mdc-switch.scss";
 import "preact-material-components/Slider/style.css";
 
 const Teleop = ({
@@ -22,7 +24,8 @@ const Teleop = ({
   pickupRating,
   pickup,
   onSubmit,
-  inBetweenRun
+  inBetweenRun,
+  climb
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -186,6 +189,10 @@ const Teleop = ({
         onInput={event => pickup(event.detail.value)}
         className={style["css-prop-override"]}
       />
+    </div>
+    <div className={style.pair}>
+      <h4>Climb?</h4>
+      <Switch onClick={climb} />
     </div>
     <div className={style.button}>
       <Button onClick={onSubmit} stroked className={style["css-prop-override"]}>

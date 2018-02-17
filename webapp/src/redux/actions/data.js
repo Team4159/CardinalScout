@@ -18,6 +18,7 @@ export const types = {
   FAIL_VAULT: "FAIL_VAULT",
   FAIL_EPIC: "FAIL_EPIC",
   PICKUP: "PICKUP",
+  CLIMB: "CLIMB",
   RESET: "RESET_DATA"
 };
 
@@ -63,4 +64,5 @@ export const failEpic = createAction(types.FAIL_EPIC, (o: Object) => ({
 export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));
+export const climb = createAction(types.CLIMB);
 export const reset = createAction(types.RESET);
