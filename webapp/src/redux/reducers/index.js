@@ -6,7 +6,7 @@ import fb from "./fb";
 import data from "./data";
 import snack from "./snack";
 import superdata from "./superdata";
-
+import { routerReducer } from "react-router-redux";
 const rootReducer = combineReducers({
   auth,
   header,
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
   fb,
   data,
   snack,
-  superdata
+  superdata,
+  router: routerReducer
 });
 export default rootReducer;

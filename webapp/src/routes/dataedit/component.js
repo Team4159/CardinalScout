@@ -12,7 +12,7 @@ const Item = ({ text, value }) => (
     <TextField value={value} />
   </div>
 );
-const DataDisplay = ({ d, onSubmit }) => (
+const DataEdit = ({ d, onSubmit }) => (
   <div className={style.list}>
     {Object.keys(d).map(key => {
       if (Array.isArray(d[key])) {
@@ -34,4 +34,4 @@ const DataDisplay = ({ d, onSubmit }) => (
     <Button onClick={onSubmit}> submit </Button>
   </div>
 );
-export default DataDisplay;
+export default DataEdit;

@@ -4,8 +4,7 @@ import Button from "preact-material-components/Button";
 import "preact-material-components/TextField/style.css";
 import TextField from "preact-material-components/TextField";
 import "preact-material-components/Button/style.css";
-import { route } from "preact-router";
-const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
+const Match = ({ onTeamChange, onMatchChange, startTimer, push }) => (
   <div class={style.match}>
     <h1> Match</h1>
     <TextField
@@ -23,7 +22,7 @@ const Match = ({ onTeamChange, onMatchChange, startTimer }) => (
     <Button
       onClick={() => {
         startTimer();
-        route("/auto");
+        push("/auto");
       }}
       raised
     >

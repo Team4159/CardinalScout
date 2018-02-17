@@ -2,12 +2,18 @@ import { h } from "preact";
 import Toolbar from "preact-material-components/Toolbar";
 import Drawer from "preact-material-components/Drawer";
 import List from "preact-material-components/List";
-import { route } from "preact-router";
 import "preact-material-components/List/style.css";
 import "preact-material-components/Toolbar/style.css";
 import "preact-material-components/Drawer/style.css";
 
-const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
+const Header = ({
+  openDrawer,
+  drawerState,
+  closeDrawer,
+  user,
+  loggedIn,
+  push
+}) => (
   <div>
     <Toolbar className="toolbar">
       <Toolbar.Row>
@@ -27,7 +33,7 @@ const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
         <List>
           <List.LinkItem
             onClick={() => {
-              route("/");
+              push("/");
               closeDrawer();
             }}
           >
@@ -36,7 +42,7 @@ const Header = ({ openDrawer, drawerState, closeDrawer, user, loggedIn }) => (
           </List.LinkItem>
           <List.LinkItem
             onClick={() => {
-              route("/match");
+              push("/match");
               closeDrawer();
             }}
           >

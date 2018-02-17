@@ -5,16 +5,22 @@ import "preact-material-components/Switch/mdc-switch";
 import "preact-material-components/Button/mdc-button";
 import Switch from "preact-material-components/Switch";
 import Timer from "../../components/timer";
-import { route } from "preact-router";
-const changeToTeleop = seconds => {
+const changeToTeleop = (seconds, push) => {
   if (seconds === 15) {
-    route("/teleop");
+    push("/teleop");
     return null;
   }
   return null;
 };
 
-const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
+const Auto = ({
+  crossAction,
+  crossed,
+  seconds,
+  scaleAuto,
+  switchAuto,
+  push
+}) => (
   <div className={style.auto}>
     <Timer seconds={seconds} />
     <h1> Auto </h1>
@@ -63,7 +69,7 @@ const Auto = ({ crossAction, crossed, seconds, scaleAuto, switchAuto }) => (
         </div>
       </div>
     </div>
-    {changeToTeleop(seconds)}
+    {changeToTeleop(seconds, push)}
   </div>
 );
 export default Auto;

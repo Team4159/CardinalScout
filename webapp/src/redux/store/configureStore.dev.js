@@ -4,6 +4,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "localforage";
 import rootReducer from "../reducers";
 import rootSaga from "../sagas";
+import createHistory from "history/createBrowserHistory";
+import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
 
 /*function getDebugSessionKey() {
@@ -17,6 +19,8 @@ export default function configureStore(initialState: Object) {
     key: "root",
     storage
   };
+  const history = createHistory();
+  const routeMiddleWare = routerMiddleware(history);
   const sagaMiddleware = createSagaMiddleware();
   const persistedReducer = persistReducer(persistConfig, rootReducer);
   const composeEnhancers =
@@ -25,7 +29,7 @@ export default function configureStore(initialState: Object) {
   const store = createStore(
     persistedReducer,
     initialState,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
+    composeEnhancers(applyMiddleware(sagaMiddleware, routeMiddleWare))
   );
   const persistor = persistStore(store);
   sagaMiddleware.run(rootSaga);
@@ -37,5 +41,5 @@ export default function configureStore(initialState: Object) {
     );
   }
 
-  return { store, persistor };
+  return { store, persistor, history };
 }

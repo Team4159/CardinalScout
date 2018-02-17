@@ -13,8 +13,7 @@ import {
 } from "../../redux/actions/data";
 import Teleop from "./component";
 import { record, stop, reset, inBetweenRun } from "../../redux/actions/func";
-import { route } from "preact-router";
-
+import { push } from "react-router-redux";
 const mSTP = state => ({
   seconds: state.func.seconds,
   type: state.func.pickedUpFrom,
@@ -67,7 +66,7 @@ const mDTP = dispatch => ({
     dispatch(pickup(value));
   },
   onSubmit: () => {
-    route("/datadisplay");
+    dispatch(push("/dataedit"));
     dispatch(stop());
     dispatch(reset());
   }

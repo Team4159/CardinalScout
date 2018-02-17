@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { saveNewData } from "../../redux/actions/fb";
-import { route } from "preact-router";
-import DataDisplay from "./component";
+import { push } from "react-router-redux";
+import DataEdit from "./component";
 const mDTP = dispatch => ({
   onSubmit: () => {
     dispatch(saveNewData());
-    route("/");
+    dispatch(push("/"));
   }
 });
 export default connect(
@@ -13,4 +13,4 @@ export default connect(
     d: state.data
   }),
   mDTP
-)(DataDisplay);
+)(DataEdit);

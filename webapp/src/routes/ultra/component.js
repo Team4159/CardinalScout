@@ -1,5 +1,4 @@
-import { h, Component } from "preact";
-import { route } from "preact-router";
+import { h } from "preact";
 import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import TextField from "preact-material-components/TextField";
@@ -81,7 +80,7 @@ const Team = ({ team }) => (
     </div>
   </div>
 );
-const Super = ({ seconds, levitatePower, forcePower, boostPower }) => (
+const Ultra = ({ seconds, levitatePower, forcePower, boostPower }) => (
   <div className={style.super}>
     <Timer seconds={seconds} />
     <h1>match</h1>
@@ -127,4 +126,4 @@ const Super = ({ seconds, levitatePower, forcePower, boostPower }) => (
     </div>
   </div>
 );
-export default Super;
+export default Ultra;
