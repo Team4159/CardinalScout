@@ -5,7 +5,7 @@ import Button from "preact-material-components/Button";
 import style from "./style.scss";
 import { connect } from "react-redux";
 import { loginRequest, logoutRequest } from "../../redux/actions/auth";
-const Home = ({ login, logout, newData }) => (
+const Home = ({ login, logout }) => (
   <div className={style.home}>
     <h1>Home Route</h1>
     <div className={style.button}>

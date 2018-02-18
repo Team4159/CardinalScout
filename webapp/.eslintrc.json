@@ -1,10 +1,9 @@
 {
   "extends": [
     "eslint-config-synacor", 
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "plugins": [
-    "eslint-plugin-prettier",
     "flowtype"
   ],
   "rules": {
@@ -12,12 +11,6 @@
       "react/sort-comp": "off",
       "lines-around-comment": "off",
       "react/prefer-stateless-function": "off",
-      "indent": [
-        "error",
-        2
-      ],
-      "quotes": ["error", "double"],
-      "semi": ["error", "always"],
       "react/jsx-indent-props": [true, 2],
       "react/jsx-no-bind": "off"
     }

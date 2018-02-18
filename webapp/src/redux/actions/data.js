@@ -19,6 +19,7 @@ export const types = {
   FAIL_EPIC: "FAIL_EPIC",
   PICKUP: "PICKUP",
   CLIMB: "CLIMB",
+  EDIT: "EDIT",
   RESET: "RESET_DATA"
 };
 
@@ -65,4 +66,8 @@ export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));
 export const climb = createAction(types.CLIMB);
+export const edit = createAction(types.EDIT, (type: string, changes: any) => ({
+  type,
+  changes
+}));
 export const reset = createAction(types.RESET);

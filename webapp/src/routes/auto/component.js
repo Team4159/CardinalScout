@@ -31,6 +31,7 @@ const Auto = ({
       <Switch
         className={style.override}
         onClick={() => crossAction(!crossed)}
+        checked={crossed}
       />
     </div>
     <div className={style.wrapper}>

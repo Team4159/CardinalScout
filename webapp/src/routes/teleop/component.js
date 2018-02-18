@@ -25,7 +25,8 @@ const Teleop = ({
   pickup,
   onSubmit,
   inBetweenRun,
-  climb
+  climb,
+  climbed
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -192,7 +193,7 @@ const Teleop = ({
     </div>
     <div className={style.pair}>
       <h4>Climb?</h4>
-      <Switch onClick={climb} />
+      <Switch onClick={climb} checked={climbed} />
     </div>
     <div className={style.button}>
       <Button onClick={onSubmit} stroked className={style["css-prop-override"]}>

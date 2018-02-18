@@ -5,11 +5,8 @@ const intialState = {
   cross: false,
   team: null,
   match: null,
-  scaleAuto: null,
-  switchAuto: null,
-  pyramid: 0,
-  field: 0,
-  portal: 0,
+  scaleAuto: [],
+  switchAuto: [],
   scaleTele: [],
   switchTele: [],
   vaultTele: [],
@@ -36,11 +33,11 @@ const dataReducer = handleActions(
     }),
     [types.SCALE_AUTO]: (state, action) => ({
       ...state,
-      scaleAuto: action.payload.seconds
+      scaleAuto: [...state.scaleAuto, action.payload.seconds]
     }),
     [types.SWITCH_AUTO]: (state, action) => ({
       ...state,
-      switchAuto: action.payload.seconds
+      switchAuto: [...state.switchAuto, action.payload.seconds]
     }),
     [types.SCALE_TELE]: (state, action) => ({
       ...state,
@@ -77,6 +74,10 @@ const dataReducer = handleActions(
     [types.CLIMB]: state => ({
       ...state,
       climb: !state.climb
+    }),
+    [types.EDIT]: (state, action) => ({
+      ...state,
+      [action.payload.type]: action.payload.changes
     }),
     [types.RESET]: (state, action) => intialState
   },
