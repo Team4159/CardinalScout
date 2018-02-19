@@ -10,13 +10,18 @@ import style from "./style.scss";
 
 const Item = ({ text, value, edit }) => (
   <div>
-    <Button>{text + ": "}</Button>
-    <TextField value={value} onChange={e => edit(text, e.target.value)} />
+    <Button className="mdc-theme--secondary">{text + ": "}</Button>
+    <TextField
+      box
+      className="mdc-theme--secondary-bg"
+      value={value}
+      onChange={e => edit(text, e.target.value)}
+    />
   </div>
 );
 const Bool = ({ text, value, edit }) => (
   <div>
-    <Button>{text + ": "}</Button>
+    <Button className="mdc-theme--secondary">{text + ": "}</Button>
     <Switch onClick={() => edit(text, !value)} checked={value} />
   </div>
 );

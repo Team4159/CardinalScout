@@ -10,8 +10,10 @@ import "preact-material-components/Select/style.css";
 import "preact-material-components/List/style.css";
 import "preact-material-components/Button/style.css";
 
-const arrSplice = (arr, index, changes) =>
+const addChanges = (arr, index, changes) =>
   arr.slice(0, index).concat(changes, arr.slice(index + 1, arr.length));
+const removeIndex = (arr, index) =>
+  arr.slice(0, index).concat(arr.slice(index + 1, arr.length));
 const optionToIndex = option => {
   switch (option) {
     case types.PYRAMID:
@@ -24,23 +26,38 @@ const optionToIndex = option => {
 };
 const AutoField = ({ text, values, edit }) => (
   <div>
-    <text>{text}</text>
     {values.map((value, index) => (
       <div>
-        <Button>{"box " + index}</Button>
+        <h4>{"box " + (index + 1)}</h4>
+        <Button
+          className="mdc-theme--secondary"
+          onClick={() => edit(text, removeIndex(values, index))}
+        >
+          Remove Data
+        </Button>
         <TextField
           onChange={e => {
             if (!isNaN(e.target.value))
-              edit(text, arrSplice(values, index, Number(e.target.value)));
+              edit(text, addChanges(values, index, Number(e.target.value)));
           }}
           value={value}
+          label="seconds"
+          box
+          className="mdc-theme--secondary-bg"
         />
       </div>
     ))}
+    <Button
+      className="mdc-theme--secondary"
+      onClick={() => edit(text, [...values, 0])}
+    >
+      Add Data
+    </Button>
   </div>
 );
-const EditField = ({ item, text, data, index, edit }) => (
+const TeleopField = ({ item, text, data, index, edit }) => (
   <div>
+    <h3>{"box" + (index + 1)}</h3>
     <h4>Picked up from:</h4>
     <Select
       selectedIndex={optionToIndex(item.pickedUpFrom)}
@@ -48,7 +65,7 @@ const EditField = ({ item, text, data, index, edit }) => (
       onChange={e => {
         edit(
           text,
-          arrSplice(data, index, {
+          addChanges(data, index, {
             ...item,
             pickedUpFrom: e.selectedOptions[0].innerText
           })
@@ -66,7 +83,7 @@ const EditField = ({ item, text, data, index, edit }) => (
         if (!isNaN(e.target.value))
           edit(
             text,
-            arrSplice(data, index, {
+            addChanges(data, index, {
               ...item,
               seconds: Number(e.target.value)
             })
@@ -76,6 +93,12 @@ const EditField = ({ item, text, data, index, edit }) => (
       box
       className="mdc-theme--secondary-bg"
     />
+    <Button
+      className="mdc-theme--secondary"
+      onClick={() => edit(text, removeIndex(data, index))}
+    >
+      Remove Data
+    </Button>
   </div>
 );
 class ToggleEdit extends Component {
@@ -90,24 +113,59 @@ class ToggleEdit extends Component {
   render() {
     const { data, text, edit } = this.props;
     const items = () => {
-      if (data.length === 0) return null;
+      if (data.length === 0 && (text === "scaleAuto" || text === "switchAuto"))
+        return (
+          <Button
+            className="mdc-theme--secondary"
+            onClick={() => edit(text, [...data, 0])}
+          >
+            {" "}
+            Add Data{" "}
+          </Button>
+        );
+      if (data.length === 0)
+        return (
+          <Button
+            onClick={() =>
+              edit(text, [...data, { pickedUpFrom: "PYRAMID", seconds: 0 }])
+            }
+            className="mdc-theme--secondary"
+          >
+            Add Data
+          </Button>
+        );
       if (text === "scaleAuto" || text === "switchAuto")
         return <AutoField text={text} edit={edit} values={data} />;
-      return data.map((item, index) => (
+      return (
         <div>
-          <EditField
-            text={text}
-            item={item}
-            data={data}
-            edit={edit}
-            index={index}
-          />
+          {data.map((item, index) => (
+            <div>
+              <TeleopField
+                text={text}
+                item={item}
+                data={data}
+                edit={edit}
+                index={index}
+              />
+            </div>
+          ))}
+
+          <Button
+            onClick={() =>
+              edit(text, [...data, { pickedUpFrom: "PYRAMID", seconds: 0 }])
+            }
+            className="mdc-theme--secondary"
+          >
+            Add data
+          </Button>
         </div>
-      ));
+      );
     };
     return (
       <div style={style.toggleedit}>
-        <Button onClick={this.handleToggle}>{text}</Button>
+        <Button onClick={this.handleToggle} className="mdc-theme--secondary">
+          {text}
+        </Button>
         {this.state.show ? items() : null}
       </div>
     );
