@@ -21,7 +21,7 @@ const Header = ({
           <Toolbar.Icon menu onClick={openDrawer}>
             menu
           </Toolbar.Icon>
-          <Toolbar.Title>Preact app</Toolbar.Title>
+          <Toolbar.Title>CardinalScout</Toolbar.Title>
         </Toolbar.Section>
         <Toolbar.Section align-end style={{ padding: "10px" }}>
           <text> {loggedIn ? user.displayName : ""}</text>
@@ -47,6 +47,14 @@ const Header = ({
             }}
           >
             match
+          </List.LinkItem>
+          <List.LinkItem
+            onClick={() => {
+              push("/ultra");
+              closeDrawer();
+            }}
+          >
+            ultra scout
           </List.LinkItem>
         </List>
       </Drawer.TemporaryDrawerContent>

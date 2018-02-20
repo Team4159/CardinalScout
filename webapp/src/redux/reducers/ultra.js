@@ -1,13 +1,14 @@
 //@flow
-import { types } from "../actions/superdata";
+import { types } from "../actions/ultra";
 import { handleActions } from "redux-actions";
 
 const intialState = {
   forceTime: null,
   levitateTime: null,
-  boostTime: null
+  boostTime: null,
+  driverSkill: {}
 };
-const superDataReducer = handleActions(
+const ultraDataReducer = handleActions(
   {
     [types.FORCE]: (state, action) => ({
       ...state,
@@ -20,9 +21,16 @@ const superDataReducer = handleActions(
     [types.BOOST]: (state, action) => ({
       ...state,
       boostTime: action.payload.seconds
+    }),
+    [types.RANK]: (state, action) => ({
+      ...state,
+      [action.payload.type]: {
+        ...state[action.payload.type],
+        [action.payload.team]: action.payload.rank
+      }
     })
   },
   intialState
 );
 
-export default superDataReducer;
+export default ultraDataReducer;

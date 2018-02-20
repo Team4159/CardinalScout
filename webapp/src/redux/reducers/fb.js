@@ -9,7 +9,7 @@ const reducer = handleActions(
   {
     [types.DATA_SYNC]: (state, action) => ({
       ...state,
-      dataList: [...action.payload.data]
+      dataList: action.payload.data
     }),
     [types.TEAMS_SYNC]: (state, action) => ({
       ...state,

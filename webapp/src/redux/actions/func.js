@@ -7,7 +7,8 @@ export const types = {
   TICK: "TICK",
   RESET: "RESET",
   RECORD: "RECORD",
-  IN_BETWEEN_RUN: "IN_BETWEEN_RUN"
+  IN_BETWEEN_RUN: "IN_BETWEEN_RUN",
+  ACTIVE_TAB: "ACTIVE_TAB"
 };
 export const start = createAction(types.START);
 export const stop = createAction(types.STOP);
@@ -18,3 +19,4 @@ export const record = createAction(types.RECORD, (o: Object): Object => ({
   pickedUpFrom: o.type
 }));
 export const inBetweenRun = createAction(types.IN_BETWEEN_RUN);
+export const activeTab = createAction(types.ACTIVE_TAB, tab => ({ tab }));

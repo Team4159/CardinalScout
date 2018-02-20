@@ -5,7 +5,8 @@ const intialState = {
   seconds: 0,
   lastTimeRecorded: 0,
   pickedUpFrom: "",
-  inBetweenRun: false
+  inBetweenRun: false,
+  activeTab: 0
 };
 const funcReducer = handleActions(
   {
@@ -21,6 +22,10 @@ const funcReducer = handleActions(
     [types.IN_BETWEEN_RUN]: (state, action) => ({
       ...state,
       inBetweenRun: !state.inBetweenRun
+    }),
+    [types.ACTIVE_TAB]: (state, action) => ({
+      ...state,
+      activeTab: action.payload.tab
     })
   },
   intialState
