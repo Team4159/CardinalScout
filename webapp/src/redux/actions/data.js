@@ -5,6 +5,7 @@ export const types = {
   CROSS: "CROSS",
   TEAM: "TEAM",
   MATCH: "MATCH",
+  POSITION: "POSITION",
   SCALE_AUTO: "SCALE_AUTON",
   SWITCH_AUTO: "SWITCH_AUTO",
   SCALE_TELE: "SCALE_TELE",
@@ -26,6 +27,13 @@ export const types = {
 export const cross = createAction(types.CROSS, (cross: boolean) => ({ cross }));
 export const team = createAction(types.TEAM, (team: number) => ({ team }));
 export const match = createAction(types.MATCH, (match: number) => ({ match }));
+export const position = createAction(
+  types.POSITION,
+  (type: string, pos: number) => ({
+    pos,
+    type
+  })
+);
 export const switchAuto = createAction(
   types.SWITCH_AUTO,
   (seconds: number) => ({ seconds })
@@ -45,7 +53,6 @@ export const vaultTele = createAction(types.VAULT_TELE, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type
 }));
-//
 export const failScale = createAction(types.FAIL_SCALE, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type

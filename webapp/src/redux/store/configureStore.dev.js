@@ -8,16 +8,11 @@ import createHistory from "history/createBrowserHistory";
 import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
 
-/*function getDebugSessionKey() {
-
-  const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
-  return matches && matches.length > 0 ? matches[1] : null;
-}*/
-
 export default function configureStore(initialState: Object) {
   const persistConfig = {
     key: "root",
-    storage
+    storage,
+    blacklist: ["fb", "auth"]
   };
   const history = createHistory();
   const routeMiddleWare = routerMiddleware(history);

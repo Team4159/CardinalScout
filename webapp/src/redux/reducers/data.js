@@ -5,6 +5,9 @@ const intialState = {
   cross: false,
   team: null,
   match: null,
+  robotStartingPosition: null,
+  switchStartingPosition: null,
+  scaleStartingPosition: null,
   scaleAuto: [],
   switchAuto: [],
   scaleTele: [],
@@ -30,6 +33,10 @@ const dataReducer = handleActions(
     [types.MATCH]: (state, action) => ({
       ...state,
       match: action.payload.match
+    }),
+    [types.POSITION]: (state, action) => ({
+      ...state,
+      [action.payload.type]: action.payload.pos
     }),
     [types.SCALE_AUTO]: (state, action) => ({
       ...state,
