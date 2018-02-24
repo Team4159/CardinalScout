@@ -6,6 +6,30 @@ import "preact-material-components/List/style.css";
 import "preact-material-components/Toolbar/style.css";
 import "preact-material-components/Drawer/style.css";
 
+const conditionalRoutes = (loggedIn, push, closeDrawer) => {
+  if (loggedIn)
+    return (
+      <div>
+        <List.LinkItem
+          onClick={() => {
+            push("/match");
+            closeDrawer();
+          }}
+        >
+          match
+        </List.LinkItem>
+        <List.LinkItem
+          onClick={() => {
+            push("/ultramatch");
+            closeDrawer();
+          }}
+        >
+          ultra scout
+        </List.LinkItem>
+      </div>
+    );
+  return null;
+};
 const Header = ({
   openDrawer,
   drawerState,
@@ -40,22 +64,7 @@ const Header = ({
             <List.ItemIcon>home</List.ItemIcon>
             Home
           </List.LinkItem>
-          <List.LinkItem
-            onClick={() => {
-              push("/match");
-              closeDrawer();
-            }}
-          >
-            match
-          </List.LinkItem>
-          <List.LinkItem
-            onClick={() => {
-              push("/ultramatch");
-              closeDrawer();
-            }}
-          >
-            ultra scout
-          </List.LinkItem>
+          {conditionalRoutes(loggedIn, push, closeDrawer)}
         </List>
       </Drawer.TemporaryDrawerContent>
     </Drawer.TemporaryDrawer>

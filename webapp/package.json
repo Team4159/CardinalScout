@@ -7,6 +7,7 @@
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build --no-prerender",
     "serve": "preact build --no-prerender && preact serve",
+    "deploy": "preact build --no-prerender && firebase deploy",
     "dev": "preact watch",
     "lint": "eslint src",
     "pretty": "prettier ./.prettierrc --write \"src/**/**.js\" ",
