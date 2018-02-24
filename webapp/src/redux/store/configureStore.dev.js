@@ -7,7 +7,8 @@ import rootSaga from "../sagas";
 import createHistory from "history/createBrowserHistory";
 import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
-
+import { handleNetwork } from "../../util";
+import { networkStatusChanged } from "../actions/network";
 export default function configureStore(initialState: Object) {
   const persistConfig = {
     key: "root",
@@ -28,6 +29,9 @@ export default function configureStore(initialState: Object) {
   );
   const persistor = persistStore(store);
   sagaMiddleware.run(rootSaga);
+  handleNetwork(online => {
+    store.dispatch(networkStatusChanged(online));
+  });
   if (module.hot) {
     module.hot.accept("../reducers", () =>
       store.replaceReducer(
