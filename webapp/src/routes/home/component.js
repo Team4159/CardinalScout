@@ -8,7 +8,11 @@ const Home = ({ login, loggedIn }) => (
   <div className={style.home}>
     <h1>Cardinal Scout</h1>
     <div className={style.button}>
-      <Button onClick={login} disabled={loggedIn} stroked ripple>
+      <Button
+        onClick={login}
+        className="mdc-theme--text-disabled-on-background"
+        disabled={loggedIn}
+      >
         login
       </Button>
     </div>

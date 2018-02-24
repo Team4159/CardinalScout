@@ -1,7 +1,8 @@
 import { call, fork, all, select, takeEvery, put } from "redux-saga/effects";
 import { delay } from "redux-saga";
-import { types, syncData, syncTeams } from "../actions/fb";
+import { types, syncData, syncTeams, syncUltra } from "../actions/fb";
 import { reset } from "../actions/data";
+import { resetUltra } from "../actions/ultra";
 import { message, showSnack } from "../actions/snack";
 import getRsf from "../rsf";
 function* saveNewData() {
@@ -18,11 +19,30 @@ function* saveNewData() {
   yield call(delay, 5000);
   yield put(showSnack());
 }
-
+function* saveNewUltra() {
+  const { rsf } = yield call(getRsf);
+  const user = yield select(state => state.auth.user);
+  const newUltra = yield select(state => state.ultra);
+  yield call(rsf.database.create, "ultra/" + user.uid, {
+    creator: user ? user.displayName : null,
+    data: newUltra
+  });
+  yield put(resetUltra());
+  yield put(message("Ultra Data Successfully Saved!!!!!"));
+  yield put(showSnack());
+  yield call(delay, 5000);
+  yield put(showSnack());
+}
 function* syncDataSaga() {
   const { rsf } = yield call(getRsf);
   yield fork(rsf.database.sync, "data", {
     successActionCreator: syncData
+  });
+}
+function* syncUltraSaga() {
+  const { rsf } = yield call(getRsf);
+  yield fork(rsf.database.sync, "ultra", {
+    successActionCreator: syncUltra
   });
 }
 function* syncTeamsSaga() {
@@ -35,6 +55,8 @@ export default function* rootSaga() {
   yield all([
     fork(syncTeamsSaga),
     fork(syncDataSaga),
-    takeEvery(types.DATA_NEW_SAVE, saveNewData)
+    takeEvery(types.DATA_NEW_SAVE, saveNewData),
+    takeEvery(types.ULTRA_NEW_SAVE, saveNewUltra),
+    fork(syncUltraSaga)
   ]);
 }

@@ -37,7 +37,7 @@ const Fields = ({ field, team, rank, rankings }) => (
       <Radio
         onChange={() => rank(field, team, 1)}
         id={team + field + "-1"}
-        name="Top Rating"
+        name={team + field + "Rating"}
         checked={rankings[team] === 1}
         disabled={isRankSelected(rankings, 1) && rankings[team] !== 1}
       />
@@ -75,7 +75,7 @@ const Fields = ({ field, team, rank, rankings }) => (
     </FormField>
   </div>
 );
-const Team = ({ team, rank, rankings }) => (
+const Team = ({ team, rank, rankings, teamComment, comments }) => (
   <div className={style.pair}>
     <h1>{"team " + team}</h1>
     <p>driver skill</p>
@@ -85,15 +85,6 @@ const Team = ({ team, rank, rankings }) => (
         rank={rank}
         field="driverSkill"
         rankings={rankings.driverSkill}
-      />
-    </div>
-    <p>defense</p>
-    <div>
-      <Fields
-        team={team}
-        rank={rank}
-        field="defense"
-        rankings={rankings.defense}
       />
     </div>
     <p>scale control</p>
@@ -115,22 +106,34 @@ const Team = ({ team, rank, rankings }) => (
       />
     </div>
     <h2>notes about this team</h2>
-    <TextField textarea className={style.textfield} />
+    <TextField
+      textarea
+      className={style.textfield}
+      onChange={e => teamComment(team, e.target.value)}
+    />
   </div>
 );
 
-const renderTabs = (teams, rank, tab, rankings) => (
-  <Team team={teams[tab]} rank={rank} rankings={rankings} />
+const renderTabs = (teams, rank, tab, rankings, teamComment) => (
+  <Team
+    team={teams[tab]}
+    rank={rank}
+    rankings={rankings}
+    teamComment={teamComment}
+  />
 );
 const Ultra = ({
   seconds,
+  teams,
   levitatePower,
   forcePower,
   boostPower,
   rank,
   activeTab,
   tab,
-  rankings
+  rankings,
+  teamComment,
+  onSubmitPress
 }) => (
   <div className={style.super}>
     <Timer seconds={seconds} />
@@ -192,7 +195,7 @@ const Ultra = ({
           Team 3
         </Tabs.Tab>
       </Tabs>
-      {renderTabs([1, 2, 3], rank, tab, rankings)}
+      {renderTabs(teams, rank, tab, rankings, teamComment)}
     </div>
     <h2>general notes</h2>
     <TextField className={style.textfield} textarea />
@@ -200,6 +203,7 @@ const Ultra = ({
       <h3>INTeresting match????</h3>
       <Switch />
     </div>
+    <Button onClick={onSubmitPress}>Submit</Button>
   </div>
 );
 export default Ultra;

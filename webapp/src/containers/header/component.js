@@ -50,7 +50,7 @@ const Header = ({
           </List.LinkItem>
           <List.LinkItem
             onClick={() => {
-              push("/ultra");
+              push("/ultramatch");
               closeDrawer();
             }}
           >

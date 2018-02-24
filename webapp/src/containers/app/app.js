@@ -3,6 +3,7 @@ import { ConnectedRouter } from "react-router-redux";
 import { Route } from "react-router";
 import Home from "../../routes/home";
 import Header from "../../containers/header";
+import UltraMatch from "../../routes/ultramatch";
 import Snack from "../../containers/snack";
 import Teleop from "../../routes/teleop";
 import Match from "../../routes/match";
@@ -22,6 +23,7 @@ const App = ({ history }) => (
           <Route path="/teleop" component={Teleop} />
           <Route path="/ultra" component={Ultra} />
           <Route path="/dataedit" component={DataEdit} />
+          <Route path="/ultramatch" component={UltraMatch} />
         </div>
       </ConnectedRouter>
     </div>

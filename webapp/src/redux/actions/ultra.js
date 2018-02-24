@@ -5,9 +5,22 @@ export const types = {
   FORCE: "FORCE",
   LEVITATE: "LEVITATE",
   BOOST: "BOOST",
-  RANK: "RANK"
+  RANK: "RANK",
+  ULTRA_TEAM: "ULTRA_TEAM",
+  ULTRA_MATCH: "ULTRA_MATCH",
+  TEAM_COMMENTS: "TEAM_COMMENTS",
+  RESET_ULTRA: "RESET_ULTRA"
 };
-
+export const ultraTeam = createAction(
+  types.ULTRA_TEAM,
+  (team: string, index: number) => ({
+    team,
+    index
+  })
+);
+export const ultraMatch = createAction(types.ULTRA_MATCH, (match: string) => ({
+  match
+}));
 export const force = createAction(types.FORCE, (seconds: number) => ({
   seconds
 }));
@@ -25,3 +38,8 @@ export const rank = createAction(
     rank
   })
 );
+export const teamComment = createAction(
+  types.TEAM_COMMENTS,
+  (team: string, comment: string) => ({ team, comment })
+);
+export const resetUltra = createAction(types.RESET_ULTRA);

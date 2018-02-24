@@ -1,8 +1,9 @@
 import { handleActions } from "redux-actions";
 import { types } from "../actions/fb";
 const initialState = {
-  dataList: [],
-  teamsList: []
+  dataList: {},
+  teamsList: {},
+  ultraList: {}
 };
 
 const reducer = handleActions(
@@ -13,7 +14,11 @@ const reducer = handleActions(
     }),
     [types.TEAMS_SYNC]: (state, action) => ({
       ...state,
-      teamsList: [...action.payload.teams]
+      teamsList: action.payload.teams
+    }),
+    [types.ULTRA_SYNC]: (state, action) => ({
+      ...state,
+      ultraList: action.payload.ultra
     })
   },
   initialState
