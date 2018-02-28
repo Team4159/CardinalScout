@@ -24,5 +24,5 @@ export default function(config, env, helpers) {
     }
   ]);
   let plugins = config.plugins;
-  //  plugins.push(new BundleAnalyzerPlugin({ analyzerMode: "static" }));
+  plugins.push(new BundleAnalyzerPlugin({ analyzerMode: "static" }));
 }
