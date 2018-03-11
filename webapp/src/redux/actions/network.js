@@ -15,8 +15,9 @@ export const networkStatusChanged = createAction(
 //USAGE: newData has to be an Object that has the properties { type: String, data: Object }
 export const offlineCache = createAction(
   types.OFFLINE_CACHE,
-  (newData: Object) => ({
-    newData
+  (newData: Object, type: string) => ({
+    newData,
+    type
   })
 );
 export const clearCache = createAction(types.CLEAR_CACHE);

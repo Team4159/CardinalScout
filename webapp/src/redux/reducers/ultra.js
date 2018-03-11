@@ -8,6 +8,9 @@ const intialState = {
   forceTime: null,
   levitateTime: null,
   boostTime: null,
+  boostLevel: 0,
+  forceLevel: 0,
+  levitateLevel: 0,
   driverSkill: {},
   scaleControl: {},
   defense: {},
@@ -27,6 +30,18 @@ const ultraDataReducer = handleActions(
     [types.BOOST]: (state, action) => ({
       ...state,
       boostTime: action.payload.seconds
+    }),
+    [types.LEVITATE_LEVEL]: (state, action) => ({
+      ...state,
+      levitateLevel: action.payload.lvl
+    }),
+    [types.BOOST_LEVEL]: (state, action) => ({
+      ...state,
+      boostLevel: action.payload.lvl
+    }),
+    [types.FORCE_LEVEL]: (state, action) => ({
+      ...state,
+      forceLevel: action.payload.lvl
     }),
     [types.RANK]: (state, action) => ({
       ...state,

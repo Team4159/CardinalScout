@@ -1,49 +1,35 @@
 //@flow
 import { connect } from "react-redux";
-import { createSelector } from "reselect";
 import {
   force,
   levitate,
   boost,
-  rank,
-  teamComment
+  forceLevel,
+  boostLevel,
+  levitateLevel
 } from "../../redux/actions/ultra";
-import { activeTab, stop, reset } from "../../redux/actions/func";
 import { push } from "react-router-redux";
-import { saveNewUltra } from "../../redux/actions/fb";
 import Ultra from "./component";
-const rankingsSelector = createSelector(
-  state => state.ultra,
-  ultra =>
-    Object.keys(ultra)
-      .filter(key => typeof ultra[key] === "object" && ultra[key] !== null)
-      .reduce(
-        (acc, curr) => ({
-          ...acc,
-          [curr]: ultra[curr]
-        }),
-        {}
-      )
-);
+import { stop, reset } from "../../redux/actions/func";
 const mDTP = dispatch => ({
   forcePower: seconds => dispatch(force(seconds)),
   levitatePower: seconds => dispatch(levitate(seconds)),
   boostPower: seconds => dispatch(boost(seconds)),
-  rank: (type, team, r) => dispatch(rank(type, team, r)),
-  activeTab: tab => dispatch(activeTab(tab)),
-  teamComment: (team, comment) => dispatch(teamComment(team, comment)),
-  onSubmitPress: () => {
+  forceLevel: lvl => dispatch(forceLevel(lvl)),
+  boostLevel: lvl => dispatch(boostLevel(lvl)),
+  levitateLevel: lvl => dispatch(levitateLevel(lvl)),
+  onNextPress: () => {
     dispatch(stop());
     dispatch(reset());
-    dispatch(saveNewUltra());
-    dispatch(push("/"));
+    dispatch(push("/ultraforms"));
   }
 });
 const mSTP = state => ({
   seconds: state.func.seconds,
-  tab: state.func.activeTab,
-  rankings: rankingsSelector(state),
-  teams: state.ultra.teams
+  teams: state.ultra.teams,
+  forceDisabled: state.ultra.forceTime !== null,
+  boostDisabled: state.ultra.boostTime !== null,
+  levitateDisabled: state.ultra.levitateTime !== null
 });
 
 export default connect(mSTP, mDTP)(Ultra);

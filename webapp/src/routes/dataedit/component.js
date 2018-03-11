@@ -32,7 +32,13 @@ const DataEdit = ({ d, onSubmit, edit }) => (
       if (Array.isArray(d[key])) {
         return <ToggleEdit edit={edit} key={key} text={key} data={d[key]} />;
       }
-      if (key === "climb" || key === "cross")
+      if (
+        key === "robotStartingPosition" ||
+        key === "scaleStartingPosition" ||
+        key === "switchStartingPosition"
+      )
+        return <text>sorry, you can't edit {key}.</text>;
+      if (key === "climb" || key === "cross" || key === "attemptClimb")
         return <Bool text={key} value={d[key]} edit={edit} />;
       return <Item text={key} value={d[key]} edit={edit} />;
     })}

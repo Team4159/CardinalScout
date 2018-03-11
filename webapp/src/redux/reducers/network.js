@@ -18,9 +18,9 @@ export default handleActions(
       ...state,
       cache: {
         ...state.cache,
-        [action.payload.newData.type]: [
-          ...state.cache[action.payload.newData.type],
-          action.payload.newData.data
+        [action.payload.type]: [
+          ...state.cache[action.payload.type],
+          action.payload.newData
         ]
       }
     }),

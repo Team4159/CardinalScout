@@ -16,8 +16,9 @@ const intialState = {
   failScale: [],
   failSwitch: [],
   failVault: [],
-  failEpic: [],
   pickupRating: 3,
+  robotDeadTime: 0,
+  attemptClimb: false,
   climb: false
 };
 const dataReducer = handleActions(
@@ -70,13 +71,17 @@ const dataReducer = handleActions(
       ...state,
       failVault: [...state.failVault, action.payload]
     }),
-    [types.FAIL_EPIC]: (state, action) => ({
-      ...state,
-      failEpic: [...state.failEpic, action.payload]
-    }),
     [types.PICKUP]: (state, action) => ({
       ...state,
       pickupRating: action.payload.value
+    }),
+    [types.ROBOT_DEAD_TIME]: (state, action) => ({
+      ...state,
+      robotDeadTime: state.robotDeadTime + action.payload.seconds
+    }),
+    [types.ATTEMPT_CLIMB]: state => ({
+      ...state,
+      attemptClimb: !state.attemptClimb
     }),
     [types.CLIMB]: state => ({
       ...state,

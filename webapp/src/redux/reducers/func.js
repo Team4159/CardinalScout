@@ -6,7 +6,8 @@ const intialState = {
   lastTimeRecorded: 0,
   pickedUpFrom: "",
   inBetweenRun: false,
-  activeTab: 0
+  activeTab: 0,
+  robotDead: false
 };
 const funcReducer = handleActions(
   {
@@ -26,6 +27,11 @@ const funcReducer = handleActions(
     [types.ACTIVE_TAB]: (state, action) => ({
       ...state,
       activeTab: action.payload.tab
+    }),
+    [types.ROBOT_DEAD]: (state, action) => ({
+      ...state,
+      robotDead: !state.robotDead,
+      lastTimeRecorded: action.payload.seconds
     })
   },
   intialState

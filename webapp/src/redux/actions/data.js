@@ -17,8 +17,9 @@ export const types = {
   FAIL_SCALE: "FAIL_SCALE",
   FAIL_SWITCH: "FAIL_SWITCH",
   FAIL_VAULT: "FAIL_VAULT",
-  FAIL_EPIC: "FAIL_EPIC",
   PICKUP: "PICKUP",
+  ATTEMPT_CLIMB: "ATTEMPT_CLIMB",
+  ROBOT_DEAD_TIME: "ROBOT_DEAD_TIME",
   CLIMB: "CLIMB",
   EDIT: "EDIT",
   RESET: "RESET_DATA"
@@ -65,14 +66,17 @@ export const failVault = createAction(types.FAIL_VAULT, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type
 }));
-export const failEpic = createAction(types.FAIL_EPIC, (o: Object) => ({
-  seconds: o.seconds,
-  pickedUpFrom: o.type
-}));
 export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));
 export const climb = createAction(types.CLIMB);
+export const attemptClimb = createAction(types.ATTEMPT_CLIMB);
+export const robotDeadTime = createAction(
+  types.ROBOT_DEAD_TIME,
+  (seconds: number) => ({
+    seconds
+  })
+);
 export const edit = createAction(types.EDIT, (type: string, changes: any) => ({
   type,
   changes

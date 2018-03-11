@@ -8,7 +8,8 @@ export const types = {
   RESET: "RESET",
   RECORD: "RECORD",
   IN_BETWEEN_RUN: "IN_BETWEEN_RUN",
-  ACTIVE_TAB: "ACTIVE_TAB"
+  ACTIVE_TAB: "ACTIVE_TAB",
+  ROBOT_DEAD: "ROBOT_DEAD"
 };
 export const start = createAction(types.START);
 export const stop = createAction(types.STOP);
@@ -20,3 +21,6 @@ export const record = createAction(types.RECORD, (o: Object): Object => ({
 }));
 export const inBetweenRun = createAction(types.IN_BETWEEN_RUN);
 export const activeTab = createAction(types.ACTIVE_TAB, tab => ({ tab }));
+export const robotDead = createAction(types.ROBOT_DEAD, seconds => ({
+  seconds
+}));

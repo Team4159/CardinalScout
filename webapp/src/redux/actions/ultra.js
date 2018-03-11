@@ -5,6 +5,9 @@ export const types = {
   FORCE: "FORCE",
   LEVITATE: "LEVITATE",
   BOOST: "BOOST",
+  BOOST_LEVEL: "BOOST_LEVEL",
+  FORCE_LEVEL: "FORCE_LEVEL",
+  LEVITATE_LEVEL: "LEVITATE_LEVEL",
   RANK: "RANK",
   ULTRA_TEAM: "ULTRA_TEAM",
   ULTRA_MATCH: "ULTRA_MATCH",
@@ -42,4 +45,7 @@ export const teamComment = createAction(
   types.TEAM_COMMENTS,
   (team: string, comment: string) => ({ team, comment })
 );
+export const boostLevel = createAction(types.BOOST_LEVEL, lvl => ({ lvl }));
+export const forceLevel = createAction(types.FORCE_LEVEL, lvl => ({ lvl }));
+export const levitateLevel = createAction(types.LEVITATE_LEVEL, lvl => ({ lvl }))
 export const resetUltra = createAction(types.RESET_ULTRA);

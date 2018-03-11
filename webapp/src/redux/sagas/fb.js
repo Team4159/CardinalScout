@@ -6,32 +6,38 @@ import { resetUltra } from "../actions/ultra";
 import { message, showSnack } from "../actions/snack";
 import getRsf from "../rsf";
 function* saveNewData() {
-  const { rsf } = yield call(getRsf);
-  const user = yield select(state => state.auth.user);
-  const newData = yield select(state => state.data);
-  yield call(rsf.database.create, "data/" + user.uid, {
-    creator: user ? user.displayName : null,
-    data: newData
-  });
-  yield put(reset());
-  yield put(message("Data Successfully saved!"));
-  yield put(showSnack());
-  yield call(delay, 5000);
-  yield put(showSnack());
+  const online = yield select(state => state.network.online);
+  if (online) {
+    const { rsf } = yield call(getRsf);
+    const user = yield select(state => state.auth.user);
+    const newData = yield select(state => state.data);
+    yield call(rsf.database.create, "data/" + user.uid, {
+      creator: user ? user.displayName : null,
+      data: newData
+    });
+    yield put(reset());
+    yield put(message("Data Successfully saved!"));
+    yield put(showSnack());
+    yield call(delay, 5000);
+    yield put(showSnack());
+  }
 }
 function* saveNewUltra() {
-  const { rsf } = yield call(getRsf);
-  const user = yield select(state => state.auth.user);
-  const newUltra = yield select(state => state.ultra);
-  yield call(rsf.database.create, "ultra/" + user.uid, {
-    creator: user ? user.displayName : null,
-    data: newUltra
-  });
-  yield put(resetUltra());
-  yield put(message("Ultra Data Successfully Saved!!!!!"));
-  yield put(showSnack());
-  yield call(delay, 5000);
-  yield put(showSnack());
+  const online = yield select(state => state.network.online);
+  if (online) {
+    const { rsf } = yield call(getRsf);
+    const user = yield select(state => state.auth.user);
+    const newUltra = yield select(state => state.ultra);
+    yield call(rsf.database.create, "ultra/" + user.uid, {
+      creator: user ? user.displayName : null,
+      data: newUltra
+    });
+    yield put(resetUltra());
+    yield put(message("Ultra Data Successfully Saved!!!!!"));
+    yield put(showSnack());
+    yield call(delay, 5000);
+    yield put(showSnack());
+  }
 }
 function* syncDataSaga() {
   const { rsf } = yield call(getRsf);

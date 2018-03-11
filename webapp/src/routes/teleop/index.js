@@ -8,12 +8,19 @@ import {
   failScale,
   failSwitch,
   failVault,
-  failEpic,
   pickup,
-  climb
+  climb,
+  attemptClimb,
+  robotDeadTime
 } from "../../redux/actions/data";
 import Teleop from "./component";
-import { record, stop, reset, inBetweenRun } from "../../redux/actions/func";
+import {
+  record,
+  stop,
+  reset,
+  inBetweenRun,
+  robotDead
+} from "../../redux/actions/func";
 import { push } from "react-router-redux";
 const mSTP = state => ({
   seconds: state.func.seconds,
@@ -21,7 +28,9 @@ const mSTP = state => ({
   difference: state.func.seconds - state.func.lastTimeRecorded,
   pickupRating: state.data.pickupRating,
   inBetweenRun: state.func.inBetweenRun,
-  climbed: state.data.climb
+  attemtedClimb: state.data.attemptClimb,
+  climbed: state.data.climb,
+  robotDead: state.func.robotDead
 });
 const mDTP = dispatch => ({
   handleField: seconds => {
@@ -60,14 +69,18 @@ const mDTP = dispatch => ({
     dispatch(failVault({ seconds, type }));
     dispatch(inBetweenRun());
   },
-  handleEpicFail: (seconds, type) => {
-    dispatch(failEpic({ seconds, type }));
-    dispatch(inBetweenRun());
-  },
   pickup: value => {
     dispatch(pickup(value));
   },
   climb: () => dispatch(climb()),
+  attemptClimb: () => dispatch(attemptClimb()),
+  handleRobotDead: seconds => {
+    dispatch(robotDead(seconds));
+  },
+  handleRobotDeadTime: seconds => {
+    dispatch(robotDeadTime(seconds));
+    dispatch(robotDead(0));
+  },
   onSubmit: () => {
     dispatch(push("/dataedit"));
     dispatch(stop());

@@ -19,14 +19,18 @@ const Teleop = ({
   handleScaleFail,
   handleSwitchFail,
   handleVaultFail,
-  handleEpicFail,
   difference,
   pickupRating,
   pickup,
   onSubmit,
   inBetweenRun,
   climb,
-  climbed
+  climbed,
+  handleRobotDead,
+  handleRobotDeadTime,
+  attemptClimb,
+  robotDead,
+  attemtedClimb
 }) => (
   <div className={style.teleop}>
     <text> {seconds} </text>
@@ -39,7 +43,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={inBetweenRun}
+            disabled={inBetweenRun || robotDead}
             onClick={() => handleField(seconds)}
             stroked
             className={style["css-prop-override"]}
@@ -58,7 +62,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={inBetweenRun}
+            disabled={inBetweenRun || robotDead}
             onClick={() => handlePyramid(seconds)}
             stroked
             className={style["css-prop-override"]}
@@ -77,7 +81,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={inBetweenRun}
+            disabled={inBetweenRun || robotDead}
             onClick={() => handlePortal(seconds)}
             stroked
             className={style["css-prop-override"]}
@@ -95,7 +99,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleScale(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -105,7 +109,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleScaleFail(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -124,7 +128,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleSwitch(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -134,7 +138,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleSwitchFail(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -149,7 +153,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleVault(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -159,7 +163,7 @@ const Teleop = ({
         </div>
         <div className={style.button}>
           <Button
-            disabled={!inBetweenRun}
+            disabled={!inBetweenRun || robotDead}
             onClick={() => handleVaultFail(difference, type)}
             stroked
             className={style["css-prop-override"]}
@@ -171,12 +175,22 @@ const Teleop = ({
     </div>
     <div className={style.button}>
       <Button
-        disabled={!inBetweenRun}
-        onClick={() => handleEpicFail(difference, type)}
+        onClick={() => handleRobotDead(seconds)}
         stroked
-        className={style["css-prop-override"]}
+        disabled={robotDead}
+        style={{ color: "#fff" }}
       >
-        drop
+        ROBOT DEAD
+      </Button>
+    </div>
+    <div className={style.button}>
+      <Button
+        onClick={() => handleRobotDeadTime(difference)}
+        disabled={!robotDead}
+        stroked
+        style={{ color: "#fff" }}
+      >
+        ROBOT UNDEAD
       </Button>
     </div>
     <h4>How was their pickup? (1 = instant, 5 = five or more seconds)</h4>
@@ -193,6 +207,9 @@ const Teleop = ({
     </div>
     <div className={style.pair}>
       <h4>Climb?</h4>
+      <text>attempt: </text>
+      <Switch checked={attemtedClimb} onClick={attemptClimb} />
+      <text>success: </text>
       <Switch onClick={climb} checked={climbed} />
     </div>
     <div className={style.button}>

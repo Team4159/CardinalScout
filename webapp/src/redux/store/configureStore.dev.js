@@ -1,4 +1,3 @@
-//@flow
 import { createStore, applyMiddleware, compose } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "localforage";
@@ -9,11 +8,11 @@ import { routerMiddleware } from "react-router-redux";
 import createSagaMiddleware from "redux-saga";
 import { handleNetwork } from "../../util";
 import { networkStatusChanged } from "../actions/network";
-export default function configureStore(initialState: Object) {
+export default function configureStore(initialState) {
   const persistConfig = {
     key: "root",
     storage,
-    blacklist: ["fb", "auth"]
+    blacklist: ["fb"]
   };
   const history = createHistory();
   const routeMiddleWare = routerMiddleware(history);
