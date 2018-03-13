@@ -1,0 +1,19 @@
+{
+  "cross": false,
+  "team": null,
+  "match": null,
+  "scaleAuto": null,
+  "switchAuto": null,
+  "pyramid": 0,
+  "field": 0,
+  "portal": 0,
+  "scaleTele": [],
+  "switchTele": [],
+  "vaultTele": [],
+  "failScale": [],
+  "failSwitch": [],
+  "failVault": [],
+  "failEpic": [],
+  "pickupRating": 3
+}
+
