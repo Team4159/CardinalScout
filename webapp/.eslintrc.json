@@ -12,6 +12,7 @@
       "lines-around-comment": "off",
       "react/prefer-stateless-function": "off",
       "react/jsx-indent-props": [true, 2],
-      "react/jsx-no-bind": "off"
+      "react/jsx-no-bind": "off",
+      "guard-for-in": "error"
     }
 }

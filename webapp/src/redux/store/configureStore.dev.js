@@ -11,8 +11,7 @@ import { networkStatusChanged } from "../actions/network";
 export default function configureStore(initialState) {
   const persistConfig = {
     key: "root",
-    storage,
-    blacklist: ["fb"]
+    storage
   };
   const history = createHistory();
   const routeMiddleWare = routerMiddleware(history);

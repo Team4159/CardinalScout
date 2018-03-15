@@ -6,7 +6,8 @@ import { start } from "../../redux/actions/func";
 import { push } from "react-router-redux";
 const mSTP = state => ({
   teams: state.ultra.teams,
-  match: state.ultra.match
+  match: state.ultra.match,
+  list: state.fb.teams
 });
 const mDTP = dispatch => ({
   ultraTeam: (team, index) => dispatch(ultraTeam(team, index)),

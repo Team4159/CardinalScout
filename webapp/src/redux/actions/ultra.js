@@ -47,5 +47,7 @@ export const teamComment = createAction(
 );
 export const boostLevel = createAction(types.BOOST_LEVEL, lvl => ({ lvl }));
 export const forceLevel = createAction(types.FORCE_LEVEL, lvl => ({ lvl }));
-export const levitateLevel = createAction(types.LEVITATE_LEVEL, lvl => ({ lvl }))
+export const levitateLevel = createAction(types.LEVITATE_LEVEL, lvl => ({
+  lvl
+}));
 export const resetUltra = createAction(types.RESET_ULTRA);

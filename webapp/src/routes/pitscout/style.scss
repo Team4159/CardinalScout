@@ -1,0 +1,15 @@
+.pitscout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .input {
+    display: none;
+  }
+  .button {
+    padding-top: 30px;
+  }
+  .css-prop-override {
+    color: #fff;
+  }
+}

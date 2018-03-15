@@ -2,7 +2,7 @@ const { addTeamsToFirebase } = require("./firebaseCommunicator.js")
 const { setUpTeam } = require("./DataModel.js")
 const { fetchTeamsFromTBA } = require("./TBAcommnicator.js")
 //insert event-code in fetchTeamFromTba
-fetchTeamsFromTBA("2017mttd")
+fetchTeamsFromTBA("2018casf")
   .then(teams => {
     return teams.map(team => setUpTeam(team))
   })

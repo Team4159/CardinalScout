@@ -11,8 +11,9 @@ import Auto from "../../routes/auto";
 import Ultra from "../../routes/ultra";
 import UltraForms from "../../routes/ultraforms";
 import DataEdit from "../../routes/dataedit";
-import List from "../../routes/dataviewer/list";
-import Viewer from "../../routes/dataviewer/viewer";
+import PitScout from "../../routes/pitscout";
+import Team from "../../routes/teams/team";
+import TeamList from "../../routes/teams/list";
 const App = ({ history }) => (
   <div id="app">
     <Header />
@@ -26,9 +27,10 @@ const App = ({ history }) => (
           <Route path="/ultra" component={Ultra} />
           <Route path="/dataedit" component={DataEdit} />
           <Route path="/ultramatch" component={UltraMatch} />
-          <Route path="/datalist" component={List} />
           <Route path="/ultraforms" component={UltraForms} />
-          <Route path="/dataviewer/:id" component={Viewer} />
+          <Route path="/pitscout" component={PitScout} />
+          <Route path="/teams" exact component={TeamList} />
+          <Route path="/teams/:team" component={Team} />
         </div>
       </ConnectedRouter>
     </div>

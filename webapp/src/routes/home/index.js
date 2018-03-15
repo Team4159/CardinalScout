@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { loginRequest, logoutRequest } from "../../redux/actions/auth";
 
 const mSTP = state => ({
-  loggedIn: state.auth.loggedIn
+  loggedIn: state.auth.loggedIn,
+  online: state.network.online
 });
 const mDTP = {
   login: loginRequest,

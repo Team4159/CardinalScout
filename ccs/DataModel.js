@@ -1,11 +1,11 @@
 "use strict"
 const firebaseCommunicator = require("./firebaseCommunicator.js")
-const jsonFile = require("jsonfile")
 
 const setUpTeam = team => ({
   ...team,
-  kappaScoutData: "none yet, lol",
-  normalScoutData: "none yet lol"
+  imageUrls: "none",
+  data: "none",
+  ultra: "none"
 })
 const updateTeamsAndMatchesFromFirebase = () => ({
   teams: firebaseCommunicator.getObjectAtLocation("Teams")

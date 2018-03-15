@@ -4,7 +4,21 @@ import Button from "preact-material-components/Button";
 import "preact-material-components/Button/style.css";
 import "preact-material-components/TextField/style.css";
 import style from "./style";
-const UltraMatch = ({ ultraTeam, ultraMatch, teams, match, onNextClick }) => (
+
+const containsTeam = (teams, list) => {
+  for (let i = 0; i < teams.length; i++) {
+    if (!Object.keys(list).includes(teams[i].toString())) return false;
+  }
+  return true;
+};
+const UltraMatch = ({
+  ultraTeam,
+  ultraMatch,
+  teams,
+  match,
+  onNextClick,
+  list
+}) => (
   <div className={style.ultramatch}>
     <h1>Enter Matches and Teams</h1>
     <div className={style.textfields}>
@@ -49,7 +63,12 @@ const UltraMatch = ({ ultraTeam, ultraMatch, teams, match, onNextClick }) => (
         value={teams[2]}
       />
     </div>
-    <Button onClick={onNextClick} className="mdc-theme--secondary">
+    <Button
+      onClick={onNextClick}
+      className="mdc-theme--secondary"
+      raised
+      disabled={!containsTeam(teams, list) || (match === null || isNaN(match))}
+    >
       Next
     </Button>
   </div>

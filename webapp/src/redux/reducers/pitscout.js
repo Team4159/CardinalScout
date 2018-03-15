@@ -1,16 +1,19 @@
+//@flow
+import { types } from "../actions/pitscout";
 import { handleActions } from "redux-actions";
-import { types } from "../actions/fb";
+
 const initialState = {
-  teams: null
+  team: ""
 };
 
 const reducer = handleActions(
   {
-    [types.TEAMS_SYNC]: (state, action) => ({
+    [types.PIT_TEAM]: (state, action) => ({
       ...state,
-      teams: action.payload.teams
+      team: action.payload.team
     })
   },
   initialState
 );
+
 export default reducer;

@@ -8,6 +8,7 @@ import data from "./data";
 import snack from "./snack";
 import ultra from "./ultra";
 import network from "./network";
+import pitscout from "./pitscout";
 import { routerReducer } from "react-router-redux";
 const rootReducer = combineReducers({
   auth,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   snack,
   ultra,
   network,
+  pitscout,
   router: routerReducer
 });
 export default rootReducer;

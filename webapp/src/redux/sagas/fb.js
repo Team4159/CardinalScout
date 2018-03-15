@@ -11,7 +11,7 @@ function* saveNewData() {
     const { rsf } = yield call(getRsf);
     const user = yield select(state => state.auth.user);
     const newData = yield select(state => state.data);
-    yield call(rsf.database.create, "data/" + user.uid, {
+    yield call(rsf.database.create, "teams/" + newData.team + "/data", {
       creator: user ? user.displayName : null,
       data: newData
     });
@@ -28,7 +28,7 @@ function* saveNewUltra() {
     const { rsf } = yield call(getRsf);
     const user = yield select(state => state.auth.user);
     const newUltra = yield select(state => state.ultra);
-    yield call(rsf.database.create, "ultra/" + user.uid, {
+    yield call(rsf.database.create, "teams/" + newUltra.team + "/ultra", {
       creator: user ? user.displayName : null,
       data: newUltra
     });
@@ -39,30 +39,39 @@ function* saveNewUltra() {
     yield put(showSnack());
   }
 }
-function* syncDataSaga() {
-  const { rsf } = yield call(getRsf);
-  yield fork(rsf.database.sync, "data", {
-    successActionCreator: syncData
-  });
-}
-function* syncUltraSaga() {
-  const { rsf } = yield call(getRsf);
-  yield fork(rsf.database.sync, "ultra", {
-    successActionCreator: syncUltra
-  });
-}
+
 function* syncTeamsSaga() {
   const { rsf } = yield call(getRsf);
   yield fork(rsf.database.sync, "teams", {
     successActionCreator: syncTeams
   });
 }
+function* uploadTeamImage(action) {
+  const { rsf } = yield call(getRsf);
+  const filePath = "teams/" + action.payload.team;
+  let urls = [];
+  for (let i = 0; i < action.payload.files.length; i++) {
+    let task = rsf.storage.uploadFile(
+      filePath + "/" + i,
+      action.payload.files[i]
+    );
+    task.on("state_changed", snapshot => {
+      const pct = snapshot.bytesTransferred * 100 / snapshot.totalBytes;
+      console.log(`${pct}%`);
+    });
+
+    yield task;
+    const fileURL = yield call(rsf.storage.getDownloadURL, filePath + "/" + i);
+    urls.push(fileURL);
+  }
+  console.log("upload done!");
+  yield call(rsf.database.update, filePath + "/imageUrls", urls);
+}
 export default function* rootSaga() {
   yield all([
     fork(syncTeamsSaga),
-    fork(syncDataSaga),
     takeEvery(types.DATA_NEW_SAVE, saveNewData),
     takeEvery(types.ULTRA_NEW_SAVE, saveNewUltra),
-    fork(syncUltraSaga)
+    takeEvery(types.SAVE_TEAM_IMAGE, uploadTeamImage)
   ]);
 }

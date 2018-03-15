@@ -10,7 +10,8 @@ const Match = ({
   startTimer,
   push,
   team,
-  match
+  match,
+  disabled
 }) => (
   <div class={style.match}>
     <h1> Match</h1>
@@ -38,6 +39,7 @@ const Match = ({
         push("/auto");
       }}
       raised
+      disabled={disabled || match === null || isNaN(match)}
     >
       Start Match (Standard Scout)
     </Button>
