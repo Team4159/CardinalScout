@@ -1,8 +1,9 @@
 import { call, fork, all, select, takeEvery, put } from "redux-saga/effects";
 import { delay } from "redux-saga";
-import { types, syncData, syncTeams, syncUltra } from "../actions/fb";
+import { types, syncTeams } from "../actions/fb";
 import { reset } from "../actions/data";
 import { resetUltra } from "../actions/ultra";
+import { resetPitScout } from "../actions/pitscout";
 import { message, showSnack } from "../actions/snack";
 import getRsf from "../rsf";
 function* saveNewData() {
@@ -39,12 +40,31 @@ function* saveNewUltra() {
     yield put(showSnack());
   }
 }
-
+function* saveNewPitScout() {
+  const online = yield select(state => state.network.online);
+  if (online) {
+    const { rsf } = yield call(getRsf);
+    const user = yield select(state => state.auth.user);
+    const newPitScout = yield select(state => state.pitscout);
+    yield call(rsf.database.create, "teams/" + newPitScout.team + "/pitscout", {
+      creator: user ? user.displayName : null,
+      data: newPitScout
+    });
+    yield put(resetPitScout());
+    yield put(message("PitScout Data Successfully Saved!!!!!"));
+    yield put(showSnack());
+    yield call(delay, 5000);
+    yield put(showSnack());
+  }
+}
 function* syncTeamsSaga() {
   const { rsf } = yield call(getRsf);
-  yield fork(rsf.database.sync, "teams", {
-    successActionCreator: syncTeams
-  });
+  const syncOn = yield select(state => state.fb.syncOn);
+  if (!syncOn) {
+    yield fork(rsf.database.sync, "teams", {
+      successActionCreator: syncTeams
+    });
+  }
 }
 function* uploadTeamImage(action) {
   const { rsf } = yield call(getRsf);
@@ -55,16 +75,11 @@ function* uploadTeamImage(action) {
       filePath + "/" + i,
       action.payload.files[i]
     );
-    task.on("state_changed", snapshot => {
-      const pct = snapshot.bytesTransferred * 100 / snapshot.totalBytes;
-      console.log(`${pct}%`);
-    });
 
     yield task;
     const fileURL = yield call(rsf.storage.getDownloadURL, filePath + "/" + i);
     urls.push(fileURL);
   }
-  console.log("upload done!");
   yield call(rsf.database.update, filePath + "/imageUrls", urls);
 }
 export default function* rootSaga() {
@@ -72,6 +87,7 @@ export default function* rootSaga() {
     fork(syncTeamsSaga),
     takeEvery(types.DATA_NEW_SAVE, saveNewData),
     takeEvery(types.ULTRA_NEW_SAVE, saveNewUltra),
-    takeEvery(types.SAVE_TEAM_IMAGE, uploadTeamImage)
+    takeEvery(types.SAVE_TEAM_IMAGE, uploadTeamImage),
+    takeEvery(types.PITSCOUT_NEW_SAVE, saveNewPitScout)
   ]);
 }

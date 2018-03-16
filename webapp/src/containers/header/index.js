@@ -11,7 +11,8 @@ const mDTP = dispatch => ({
 const mSTP = state => ({
   drawerState: state.header.drawerState,
   loggedIn: state.auth.loggedIn,
-  user: state.auth.user
+  user: state.auth.user,
+  closePath: state.fb.teams === null
 });
 
 export default connect(mSTP, mDTP)(Header);

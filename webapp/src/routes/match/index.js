@@ -8,9 +8,7 @@ import Match from "./component";
 const mSTP = state => ({
   team: state.data.team,
   match: state.data.match,
-  disabled:
-    !Object.keys(state.fb.teams).includes(state.data.team.toString()) &&
-    (state.data.match === null || isNaN(state.data.match))
+  disabled: false
 });
 const mDTP = dispatch => ({
   onTeamChange: text => dispatch(team(parseInt(text, 10))),

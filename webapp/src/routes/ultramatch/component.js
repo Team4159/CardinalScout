@@ -67,7 +67,7 @@ const UltraMatch = ({
       onClick={onNextClick}
       className="mdc-theme--secondary"
       raised
-      disabled={!containsTeam(teams, list) || (match === null || isNaN(match))}
+      disabled={!containsTeam(teams, list) || isNaN(match)}
     >
       Next
     </Button>

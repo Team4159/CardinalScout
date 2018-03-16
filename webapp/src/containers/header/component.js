@@ -6,8 +6,8 @@ import "preact-material-components/List/style.css";
 import "preact-material-components/Toolbar/style.css";
 import "preact-material-components/Drawer/style.css";
 
-const conditionalRoutes = (loggedIn, push, closeDrawer) => {
-  if (loggedIn)
+const conditionalRoutes = (loggedIn, push, closeDrawer, closePath) => {
+  if (loggedIn && !closePath)
     return (
       <div>
         <List.LinkItem
@@ -25,6 +25,14 @@ const conditionalRoutes = (loggedIn, push, closeDrawer) => {
           }}
         >
           ultra scout
+        </List.LinkItem>
+        <List.LinkItem
+          onClick={() => {
+            push("/pitscout");
+            closeDrawer();
+          }}
+        >
+          pitscout
         </List.LinkItem>
       </div>
     );
