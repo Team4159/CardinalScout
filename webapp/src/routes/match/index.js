@@ -1,7 +1,8 @@
+//@flow
 import { h } from "preact";
 import { connect } from "react-redux";
-import { team, match } from "../../redux/actions/data";
-import { start } from "../../redux/actions/func";
+import { team, match, reset as resetData } from "../../redux/actions/data";
+import { start, reset } from "../../redux/actions/func";
 import { push } from "react-router-redux";
 import Match from "./component";
 
@@ -14,7 +15,11 @@ const mDTP = dispatch => ({
   onTeamChange: text => dispatch(team(parseInt(text, 10))),
   onMatchChange: text => dispatch(match(parseInt(text, 10))),
   startTimer: () => dispatch(start()),
-  push: path => dispatch(push(path))
+  push: path => dispatch(push(path)),
+  reset: () => {
+    dispatch(reset());
+    dispatch(resetData());
+  }
 });
 
 export default connect(mSTP, mDTP)(Match);

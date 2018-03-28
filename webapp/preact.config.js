@@ -4,18 +4,21 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const path = require("path");
 export default function(config, env, helpers) {
   preactCliFlow(config);
+  let { rule } = helpers.getLoadersByName(config, "babel-loader")[0];
+  let babelConfig = rule.options;
+  babelConfig.plugins.push(["lodash", { id: ["recompose"] }]);
   let alias = config.resolve.alias;
   //  console.log(__dirname);
   alias.firebaseImport = path.join(
     __dirname,
     "/functions/firebaseImport.browser.js"
   );
-  let rule = config.module.loaders.filter(
+  let webpackRule = config.module.loaders.filter(
     loader => loader.loader === "babel-loader"
   )[0].options;
-  rule.plugins.push("transform-regenerator");
-  rule.plugins.push("syntax-dynamic-import");
-  rule.plugins.push([
+  webpackRule.plugins.push("transform-regenerator");
+  webpackRule.plugins.push("syntax-dynamic-import");
+  webpackRule.plugins.push([
     "transform-runtime",
     {
       helpers: false,

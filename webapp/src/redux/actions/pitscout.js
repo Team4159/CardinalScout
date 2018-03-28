@@ -7,7 +7,8 @@ export const types = {
   DRIVETRAIN_TYPE: "DRIVETRAIN_TYPE",
   MIN_RUNG_HEIGHT: "MIN_RUNG_HEIGHT",
   BACKWALL_CLIMB: "BACKWALL_CLIMB",
-  PITSCOUT_RESET: "PITSCOUT_RESET"
+  PITSCOUT_RESET: "PITSCOUT_RESET",
+  FIELDS: "FIELDS"
 };
 export const pitTeam = createAction(types.PIT_TEAM, team => ({ team }));
 export const robotWeight = createAction(types.ROBOT_WEIGHT, weight => ({
@@ -24,3 +25,7 @@ export const minRungHeight = createAction(types.MIN_RUNG_HEIGHT, height => ({
   height
 }));
 export const resetPitScout = createAction(types.PITSCOUT_RESET);
+export const fields = createAction(types.FIELDS, (type, data) => ({
+  type,
+  data
+}));

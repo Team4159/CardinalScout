@@ -13,13 +13,11 @@ const intialState = {
   scaleTele: [],
   switchTele: [],
   vaultTele: [],
-  failScale: [],
-  failSwitch: [],
-  failVault: [],
   pickupRating: 3,
   robotDeadTime: 0,
   attemptClimb: false,
-  climb: false
+  climb: false,
+  attemptCubeAuto: false
 };
 const dataReducer = handleActions(
   {
@@ -61,15 +59,15 @@ const dataReducer = handleActions(
     }),
     [types.FAIL_SCALE]: (state, action) => ({
       ...state,
-      failScale: [...state.failScale, action.payload]
+      failScale: state.failScale ? state.failScale + 1 : 1
     }),
     [types.FAIL_SWITCH]: (state, action) => ({
       ...state,
-      failSwitch: [...state.failSwitch, action.payload]
+      failSwitch: state.failSwitch ? state.failSwitch + 1 : 1
     }),
     [types.FAIL_VAULT]: (state, action) => ({
       ...state,
-      failVault: [...state.failVault, action.payload]
+      failVault: state.failVault ? state.failVault + 1 : 1
     }),
     [types.PICKUP]: (state, action) => ({
       ...state,

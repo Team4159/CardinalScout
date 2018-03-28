@@ -5,7 +5,8 @@ const initialState = {
   online: null,
   cache: {
     data: [],
-    ultra: []
+    ultra: [],
+    pitscout: []
   }
 };
 export default handleActions(

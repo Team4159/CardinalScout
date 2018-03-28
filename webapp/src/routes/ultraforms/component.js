@@ -83,24 +83,6 @@ const Team = ({ team, rank, rankings, teamComment }) => (
         rankings={rankings.driverSkill}
       />
     </div>
-    <p>scale control</p>
-    <div className="mdc-theme--secondary">
-      <Fields
-        team={team}
-        rank={rank}
-        field="scaleControl"
-        rankings={rankings.scaleControl}
-      />
-    </div>
-    <p>switch control</p>
-    <div>
-      <Fields
-        team={team}
-        rank={rank}
-        field="switchControl"
-        rankings={rankings.switchControl}
-      />
-    </div>
     <h2>notes about this team</h2>
     <TextField
       textarea

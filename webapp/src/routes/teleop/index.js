@@ -57,17 +57,14 @@ const mDTP = dispatch => ({
     dispatch(vaultTele({ seconds, type }));
     dispatch(inBetweenRun());
   },
-  handleScaleFail: (seconds, type) => {
-    dispatch(failScale({ seconds, type }));
-    dispatch(inBetweenRun());
+  handleScaleFail: () => {
+    dispatch(failScale());
   },
-  handleSwitchFail: (seconds, type) => {
-    dispatch(failSwitch({ seconds, type }));
-    dispatch(inBetweenRun());
+  handleSwitchFail: () => {
+    dispatch(failSwitch());
   },
-  handleVaultFail: (seconds, type) => {
-    dispatch(failVault({ seconds, type }));
-    dispatch(inBetweenRun());
+  handleVaultFail: () => {
+    dispatch(failVault());
   },
   pickup: value => {
     dispatch(pickup(value));

@@ -16,13 +16,59 @@ const changeToTeleop = (seconds, push) => {
   }
   return null;
 };
-
+const r = (attemptCubeAuto, switchAuto, scaleAuto, seconds) =>
+  attemptCubeAuto ? (
+    <div>
+      <div className={style.wrapper}>
+        <div className={style.pair}>
+          <div className={style.image}>
+            <img
+              src="../../assets/images/switchicon.png"
+              height="30"
+              width="30"
+            />
+          </div>
+          <div className={style.button}>
+            <Button
+              onClick={() => switchAuto(seconds)}
+              stroked
+              className={style["css-prop-override"]}
+            >
+              Box into switch
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div className={style.wrapper}>
+        <div className={style.pair}>
+          <div className={style.image}>
+            <img
+              src="../../assets/images/scaleicon.png"
+              height="30"
+              width="30"
+            />
+          </div>
+          <div className={style.button}>
+            <Button
+              onClick={() => scaleAuto(seconds)}
+              stroked
+              className={style["css-prop-override"]}
+            >
+              Box into scale
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : null;
 const Auto = ({
   crossAction,
   robotStartingPosition,
   scaleStartingPosition,
   switchStartingPosition,
   crossed,
+  attemptCubeAuto,
+  handleAttemptCubeAuto,
   seconds,
   scaleAuto,
   switchAuto,
@@ -78,8 +124,8 @@ const Auto = ({
           <Radio
             id="right"
             name="switch-starting-position"
-            onClick={() => position("switchStartingPosition", 1)}
-            checked={switchStartingPosition === 1}
+            onClick={() => position("switchStartingPosition", 2)}
+            checked={switchStartingPosition === 2}
           />
           <label for="right">Right</label>
         </FormField>
@@ -101,8 +147,8 @@ const Auto = ({
           <Radio
             id="right"
             name="scale-starting-position"
-            onClick={() => position("scaleStartingPosition", 1)}
-            checked={scaleStartingPosition === 1}
+            onClick={() => position("scaleStartingPosition", 2)}
+            checked={scaleStartingPosition === 2}
           />
           <label for="right">Right</label>
         </FormField>
@@ -118,43 +164,18 @@ const Auto = ({
         checked={crossed}
       />
     </div>
-    <div className={style.wrapper}>
-      <div className={style.pair}>
-        <div className={style.image}>
-          <img
-            src="../../assets/images/switchicon.png"
-            height="30"
-            width="30"
-          />
-        </div>
-        <div className={style.button}>
-          <Button
-            onClick={() => switchAuto(seconds)}
-            stroked
-            className={style["css-prop-override"]}
-          >
-            Box into switch
-          </Button>
-        </div>
-      </div>
+    <div className={style.h1}>
+      <h2>Attempt Cube Auto?</h2>
     </div>
-    <div className={style.wrapper}>
-      <div className={style.pair}>
-        <div className={style.image}>
-          <img src="../../assets/images/scaleicon.png" height="30" width="30" />
-        </div>
-        <div className={style.button}>
-          <Button
-            onClick={() => scaleAuto(seconds)}
-            stroked
-            className={style["css-prop-override"]}
-          >
-            Box into scale
-          </Button>
-        </div>
-      </div>
+    <div className={style.switch}>
+      <Switch
+        checked={attemptCubeAuto}
+        onClick={() => handleAttemptCubeAuto(!attemptCubeAuto)}
+        className={style.override}
+      />
     </div>
-    {changeToTeleop(seconds, push)}
+    {r(attemptCubeAuto, switchAuto, scaleAuto, seconds)}
+    <Button onClick={() => push("/teleop")}>submit</Button>
   </div>
 );
 export default Auto;

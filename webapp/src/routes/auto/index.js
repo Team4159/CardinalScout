@@ -4,7 +4,8 @@ import {
   cross,
   scaleAuto,
   switchAuto,
-  position
+  position,
+  edit
 } from "../../redux/actions/data";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
@@ -13,10 +14,12 @@ const mDTP = dispatch => ({
   position: (type, pos) => dispatch(position(type, pos)),
   switchAuto: s => dispatch(switchAuto(parseInt(s, 10))),
   scaleAuto: s => dispatch(scaleAuto(parseInt(s, 10))),
-  push: route => dispatch(push(route))
+  push: route => dispatch(push(route)),
+  handleAttemptCubeAuto: s => dispatch(edit("attemptCubeAuto", s))
 });
 const mSTP = state => ({
   crossed: state.data.cross,
+  attemptCubeAuto: state.data.attemptCubeAuto,
   switchStartingPosition: state.data.switchStartingPosition,
   scaleStartingPosition: state.data.scaleStartingPosition,
   robotStartingPosition: state.data.robotStartingPosition,

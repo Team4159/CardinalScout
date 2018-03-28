@@ -54,18 +54,9 @@ export const vaultTele = createAction(types.VAULT_TELE, (o: Object) => ({
   seconds: o.seconds,
   pickedUpFrom: o.type
 }));
-export const failScale = createAction(types.FAIL_SCALE, (o: Object) => ({
-  seconds: o.seconds,
-  pickedUpFrom: o.type
-}));
-export const failSwitch = createAction(types.FAIL_SWITCH, (o: Object) => ({
-  seconds: o.seconds,
-  pickedUpFrom: o.type
-}));
-export const failVault = createAction(types.FAIL_VAULT, (o: Object) => ({
-  seconds: o.seconds,
-  pickedUpFrom: o.type
-}));
+export const failScale = createAction(types.FAIL_SCALE);
+export const failSwitch = createAction(types.FAIL_SWITCH);
+export const failVault = createAction(types.FAIL_VAULT);
 export const pickup = createAction(types.PICKUP, (value: number) => ({
   value
 }));

@@ -38,11 +38,7 @@ Array.prototype.concatAll = function() {
 
   return results;
 };
-export const dataToArray = data =>
-  Object.keys(data)
-    .reduce((acc, curr) => acc.concat(data[curr]), [])
-    .map(d => Object.keys(d).map(key => Object.assign(d[key], { id: key })))
-    .concatAll();
+export const dataToArray = data => Object.keys(data).map(key => data[key]);
 export const queryToObject = search => {
   const query = search.split("?")[1];
   const arr = query.split("&");

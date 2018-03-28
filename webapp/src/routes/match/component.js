@@ -11,7 +11,8 @@ const Match = ({
   push,
   team,
   match,
-  disabled
+  disabled,
+  reset
 }) => (
   <div class={style.match}>
     <h1> Match</h1>
@@ -37,6 +38,7 @@ const Match = ({
       onClick={() => {
         startTimer();
         push("/auto");
+        reset();
       }}
       raised
       disabled={disabled || match === null || isNaN(match)}

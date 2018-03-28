@@ -1,61 +1,61 @@
-const math = require("mathjs")
+import math from "mathjs";
 math.config({
   number: "BigNumber"
-})
+});
 const calculateMeanSeconds = teleopDataObj => {
-  if (!Array.isArray(teleopDataObj)) return "none"
-  const arr = teleopDataObj.map(a => a.seconds)
-  return math.mean(arr)
-}
-const sortByKey = (key, array) => {
-  if (array.length === 0 || array.length === 1) return array
-  let pivot = array[0][key]
-  let wall = array.slice(1)
-  let smallArray = sortByKey(key, wall.filter(element => element[key] <= pivot))
-  let bigArray = sortByKey(key, wall.filter(element => element[key] > pivot))
-  return smallArray.concat(array[0], bigArray)
-}
-const objectToValueArray = dataObject =>
-  Object.keys(dataObject).map(key => dataObject[key])
-const count = (d, pickedUpFrom) => {
-  return Object.keys(d).reduce(
+  if (!Array.isArray(teleopDataObj)) return "none";
+  const arr = teleopDataObj.map(a => a.seconds);
+  return math.mean(arr);
+};
+export const sortByKey = (key, array) => {
+  if (array.length === 0 || array.length === 1) return array;
+  let pivot = array[0][key];
+  let wall = array.slice(1);
+  let smallArray = sortByKey(
+    key,
+    wall.filter(element => element[key] <= pivot)
+  );
+  let bigArray = sortByKey(key, wall.filter(element => element[key] > pivot));
+  return smallArray.concat(array[0], bigArray);
+};
+export const objectToValueArray = dataObject =>
+  Object.keys(dataObject).map(key => dataObject[key]);
+const count = (d, pickedUpFrom) =>
+  Object.keys(d).reduce(
     (acc, key) => {
-      const isAuto = key === "switchAuto" || key === "scaleAuto"
+      const isAuto = key === "switchAuto" || key === "scaleAuto";
       if (Array.isArray(d[key]) && !isAuto) {
         const countsAndTotals = {
           count:
             acc.count +
             d[key].reduce((ac, obj) => {
-              if (obj.pickedUpFrom === pickedUpFrom) return ac + 1
-              return ac + 0
+              if (obj.pickedUpFrom === pickedUpFrom) return ac + 1;
+              return ac + 0;
             }, 0),
           total: acc.total + d[key].length
-        }
+        };
 
         return {
           ...countsAndTotals,
           percentage: countsAndTotals.count / countsAndTotals.total * 100 + "%"
-        }
+        };
       }
-      return acc
+      return acc;
     },
     { count: 0, total: 0 }
-  )
-}
+  );
+export const reducePickedUpFrom = pickedUpFrom =>
+  pickedUpFrom.reduce((acc, curr) => ({}));
 const translateStartingPositions = pos => {
   switch (pos) {
     case 0:
-      return "left"
+      return "left";
     case 1:
-      return "middle"
+      return "middle";
     case 2:
-      return "right"
+      return "right";
   }
-}
-const excludeKeys = dataObject => {
-  const { vaultTele, scaleTele, switchTele, ...restOfData } = dataObject
-  return { restOfData, orginals: { vaultTele, scaleTele, switchTele } }
-}
+};
 const calculateMeans = dataObject => ({
   team: dataObject.team,
   meanVaultTimeInterval: dataObject.vaultTele
@@ -67,17 +67,21 @@ const calculateMeans = dataObject => ({
   meanSwitchTimeInterval: dataObject.switchTele
     ? calculateMeanSeconds(dataObject.switchTele)
     : "none"
-})
-const calculateData = dataObject => ({
+});
+const excludeKeys = dataObject => {
+  const { vaultTele, scaleTele, switchTele, ...restOfData } = dataObject;
+  return { restOfData, orginals: { vaultTele, scaleTele, switchTele } };
+};
+export const calculateData = dataObject => ({
   ...excludeKeys(dataObject).restOfData,
   robotStartingPosition: translateStartingPositions(
-    dataObject["robotStartingPosition"]
+    dataObject.robotStartingPosition
   ),
   scaleStartingPosition: translateStartingPositions(
-    dataObject["scaleStartingPosition"]
+    dataObject.scaleStartingPosition
   ),
   switchStartingPosition: translateStartingPositions(
-    dataObject["switchStartingPosition"]
+    dataObject.switchStartingPosition
   ),
   switchCubesTele: dataObject.switchTele ? dataObject.switchTele.length : 0,
   scaleCubesTele: dataObject.scaleTele ? dataObject.scaleTele.length : 0,
@@ -97,12 +101,12 @@ const calculateData = dataObject => ({
     field: count(dataObject, "FIELD")
   },
   originals: excludeKeys(dataObject).orginals
-})
-const convertDataObjectToArray = dataObject =>
+});
+export const convertDataObjectToArray = dataObject =>
   Object.keys(dataObject)
     .map(key => dataObject[key])
-    .map(data => data.data)
-const calculateTotalData = dataArray =>
+    .map(data => data.data);
+export const calculateTotalData = dataArray =>
   dataArray.map(data => calculateMeans(data)).reduce(
     (total, calcData, index, arr) => {
       const data = {
@@ -119,13 +123,13 @@ const calculateTotalData = dataArray =>
           ...total.vaultIntervalArray,
           calcData.meanVaultTimeInterval
         ].filter(int => !isNaN(int))
-      }
+      };
       const {
         scaleIntervalArray,
         switchIntervalArray,
         vaultIntervalArray,
         ...rest
-      } = data
+      } = data;
       if (index === arr.length - 1)
         return {
           ...rest,
@@ -138,13 +142,13 @@ const calculateTotalData = dataArray =>
             scaleIntervalArray.length !== 0
               ? math.std(scaleIntervalArray)
               : "none",
-          stdSwitchTimeInterval:
-            switchIntervalArray.length !== 0
-              ? math.std(switchIntervalArray)
-              : "none",
           meanSwitchTimeInterval:
             switchIntervalArray.length !== 0
               ? math.mean(switchIntervalArray)
+              : "none",
+          stdSwitchTimeInterval:
+            switchIntervalArray.length !== 0
+              ? math.std(switchIntervalArray)
               : "none",
           meanVaultTimeInterval:
             vaultIntervalArray.length !== 0
@@ -154,19 +158,12 @@ const calculateTotalData = dataArray =>
             switchIntervalArray.length !== 0
               ? math.std(switchIntervalArray)
               : "none"
-        }
-      return data
+        };
+      return data;
     },
     {
       scaleIntervalArray: [],
       switchIntervalArray: [],
       vaultIntervalArray: []
     }
-  )
-module.exports = {
-  objectToValueArray,
-  count,
-  calculateData,
-  calculateTotalData,
-  convertDataObjectToArray
-}
+  );

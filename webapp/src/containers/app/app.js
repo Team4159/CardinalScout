@@ -14,6 +14,10 @@ import DataEdit from "../../routes/dataedit";
 import PitScout from "../../routes/pitscout";
 import Team from "../../routes/teams/team";
 import TeamList from "../../routes/teams/list";
+import Ranks from "../../routes/teams/ranks";
+import PitScoutV2 from "../../routes/pitscoutv2";
+import Images from "../../routes/images";
+
 const App = ({ history }) => (
   <div id="app">
     <Header />
@@ -28,9 +32,12 @@ const App = ({ history }) => (
           <Route path="/dataedit" component={DataEdit} />
           <Route path="/ultramatch" component={UltraMatch} />
           <Route path="/ultraforms" component={UltraForms} />
-          <Route path="/pitscout" component={PitScout} />
+          <Route path="/pitscout" exact component={PitScout} />
           <Route path="/teams" exact component={TeamList} />
           <Route path="/teams/:team" component={Team} />
+          <Route path="/pitscout/v2" component={PitScoutV2} />
+          <Route path="/images" component={Images} />
+          <Route path="/ranks" exact component={Ranks} />
         </div>
       </ConnectedRouter>
     </div>

@@ -4,11 +4,11 @@ import { handleActions } from "redux-actions";
 
 const initialState = {
   team: "",
-  driverExp: null,
-  driveTrainType: null,
   backwallClimb: false,
-  minRungHeight: null,
-  robotWeight: null
+  scale: false,
+  climb: false,
+  vault: false,
+  switch: false
 };
 
 const reducer = handleActions(
@@ -37,7 +37,11 @@ const reducer = handleActions(
       ...state,
       driverExp: exp
     }),
-    [types.PITSCOUT_RESET]: state => initialState
+    [types.PITSCOUT_RESET]: state => initialState,
+    [types.FIELDS]: (state, { payload: { type, data } }) => ({
+      ...state,
+      [type]: data
+    })
   },
   initialState
 );
