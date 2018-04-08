@@ -95,39 +95,28 @@ const PitScout = ({
       }
       checked={pitscout.switch ? pitscout.switch : false}
     />
-    <h3>how high can you stack cubes?</h3>
+    <h3>Describe Switch Mechanism</h3>
     <TextField
-      onChange={e => fields("cubeStack", e.target.value)}
+      onChange={e => fields("switchMechDescription", e.target.value)}
       className="mdc-theme--secondary-bg"
       box
-      value={pitscout.cubeStack ? pitscout.cubeStack : null}
+      value={
+        pitscout.switchMechDescription ? pitscout.switchMechDescription : null
+      }
     />
-    <h3>careful placement?</h3>
-    <TextField
-      onChange={e => fields("carefulPlacement", e.target.value)}
-      className="mdc-theme--secondary-bg"
-      box
-      value={pitscout.carefulPlacement ? pitscout.carefulPlacement : null}
-    />
+
     <h2>Scale</h2>
     <Switch
       onClick={() => fields("scale", pitscout.scale ? !pitscout.scale : true)}
       checked={pitscout.scale ? pitscout.scale : false}
     />
-    <h3>How high can you stack?</h3>
+    <h3>Describe Scale Mechanism</h3>
     <TextField
-      onChange={e => fields("cubeStackScale", e.target.value)}
-      className="mdc-theme--secondary-bg"
-      box
-      value={pitscout.cubeStackScale ? pitscout.cubeStackScale : null}
-    />
-    <h3>Careful Placement?</h3>
-    <TextField
-      onChange={e => fields("carefulPlacementScale", e.target.value)}
+      onChange={e => fields("scaleMechDescription", e.target.value)}
       className="mdc-theme--secondary-bg"
       box
       value={
-        pitscout.carefulPlacementScale ? pitscout.carefulPlacementScale : null
+        pitscout.scaleMechDescription ? pitscout.scaleMechDescription : null
       }
     />
     <h2>Climb</h2>
@@ -135,25 +124,6 @@ const PitScout = ({
       onClick={() => fields("climb", pitscout.climb ? !pitscout.climb : true)}
       checked={pitscout.climb ? pitscout.climb : false}
     />
-    <h3>Can you climb from our robot?</h3>
-    <Switch
-      onClick={() =>
-        fields(
-          "climbOffOurBot",
-          pitscout.climbOffOurBot ? !pitscout.climbOffOurBot : true
-        )
-      }
-      checked={pitscout.climbOffOurBot ? pitscout.climbOffOurBot : false}
-    />
-    <h3>Buddy Climb</h3>
-    <text> format: "passive" or "active" or "none"</text>
-    <TextField
-      onChange={e => fields("buddyClimbStyle", e.target.value)}
-      className="mdc-theme--secondary-bg"
-      box
-      value={pitscout.buddyClimbStyle ? pitscout.buddyClimbStyle : null}
-    />
-
     <div className={styles.button}>
       <Button
         onClick={pitscoutNewSave}

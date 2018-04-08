@@ -12,9 +12,6 @@ const intialState = {
   forceLevel: 0,
   levitateLevel: 0,
   driverSkill: {},
-  scaleControl: {},
-  defense: {},
-  switchControl: {},
   comments: {}
 };
 const ultraDataReducer = handleActions(
@@ -71,18 +68,6 @@ const ultraDataReducer = handleActions(
         ),
       driverSkill: {
         ...state.driverSkill,
-        [action.payload.team]: null
-      },
-      scaleControl: {
-        ...state.scaleControl,
-        [action.payload.team]: null
-      },
-      defense: {
-        ...state.defense,
-        [action.payload.team]: null
-      },
-      switchControl: {
-        ...state.switchControl,
         [action.payload.team]: null
       },
       comments: {

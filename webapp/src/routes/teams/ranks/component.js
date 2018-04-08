@@ -5,21 +5,24 @@ import "preact-material-components/Tabs/style.css";
 import List from "preact-material-components/List";
 import "preact-material-components/List/style.css";
 
-const renderRanks = (data, tab) => (
+const Rankings = ({ data, tab, push }) => (
   <div>
     <List>
-      {data.map(dataObject => (
-        <List.Item>
-          Team: {dataObject.team}. {tab}: {dataObject[tab]}
-        </List.Item>
-      ))}
+      {data.map(
+        dataObject =>
+          dataObject ? (
+            <List.Item onClick={() => push("/teams/" + dataObject.team)}>
+              Team: {dataObject.team}. {tab}: {dataObject[tab]}
+            </List.Item>
+          ) : null
+      )}
     </List>
   </div>
 );
 //options for tabs are "meanSwitchTimeInterval" "meanVaultTimeInterval" and "meanScaleTimeInterval"
 const enhance = withState("tab", "changeTab", "meanSwitchTimeInterval");
 
-const Ranks = enhance(({ tab, changeTab, ranks }) => (
+const Ranks = enhance(({ tab, changeTab, ranks, push, driverSkillRanks }) => (
   <div>
     <Tabs className="mdc-theme--secondary" indicator-accent>
       <Tabs.Tab
@@ -38,8 +41,8 @@ const Ranks = enhance(({ tab, changeTab, ranks }) => (
       </Tabs.Tab>
       <Tabs.Tab
         className="mdc-theme--text-primary-on-dark"
-        active={tab === "driver-skill"}
-        onClick={() => changeTab(() => "driver-skill")}
+        active={tab === "driverSkill"}
+        onClick={() => changeTab(() => "driverSkill")}
       >
         Driver Skill
       </Tabs.Tab>
@@ -51,7 +54,11 @@ const Ranks = enhance(({ tab, changeTab, ranks }) => (
         Vault
       </Tabs.Tab>
     </Tabs>
-    {ranks[tab] ? renderRanks(ranks[tab], tab) : null}
+    {ranks[tab] && <Rankings data={ranks[tab]} tab={tab} push={push} />}
+    {tab === "driverSkill" &&
+      driverSkillRanks && (
+        <Rankings data={driverSkillRanks} tab={tab} push={push} />
+      )}
   </div>
 ));
 

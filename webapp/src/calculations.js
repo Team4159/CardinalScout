@@ -18,6 +18,31 @@ export const sortByKey = (key, array) => {
   let bigArray = sortByKey(key, wall.filter(element => element[key] > pivot));
   return smallArray.concat(array[0], bigArray);
 };
+export const sort = array => {
+  if (array.length === 0 || array.length === 1) return array;
+  let pivot = array[0];
+  let wall = array.slice(1);
+  let smallArray = sort(wall.filter(element => element <= pivot));
+  let bigArray = sort(wall.filter(element => element > pivot));
+  return smallArray.concat(array[0], bigArray);
+};
+export const calculateDriverSkill = ultra =>
+  typeof ultra === "object"
+    ? math.mean(
+        convertDataObjectToArray(ultra)
+          .map(ultra => ultra.driverSkill)
+          .filter(driverSkill => !isNaN(driverSkill))
+      )
+    : null;
+export const calculateTotalDriverSkill = teamObject =>
+  Object.keys(teamObject)
+    .map(key => teamObject[key])
+    .filter(team => typeof team.ultra === "object")
+    .map(team => ({
+      driverSkill: calculateDriverSkill(team.ultra),
+      team: team.team_number
+    }));
+
 export const objectToValueArray = dataObject =>
   Object.keys(dataObject).map(key => dataObject[key]);
 const count = (d, pickedUpFrom) =>
@@ -103,67 +128,71 @@ export const calculateData = dataObject => ({
   originals: excludeKeys(dataObject).orginals
 });
 export const convertDataObjectToArray = dataObject =>
-  Object.keys(dataObject)
-    .map(key => dataObject[key])
-    .map(data => data.data);
+  typeof dataObject === "object"
+    ? Object.keys(dataObject)
+        .map(key => dataObject[key])
+        .map(data => data.data)
+    : null;
 export const calculateTotalData = dataArray =>
-  dataArray.map(data => calculateMeans(data)).reduce(
-    (total, calcData, index, arr) => {
-      const data = {
-        ...total,
-        scaleIntervalArray: [
-          ...total.scaleIntervalArray,
-          calcData.meanScaleTimeInterval
-        ].filter(int => !isNaN(int)),
-        switchIntervalArray: [
-          ...total.switchIntervalArray,
-          calcData.meanSwitchTimeInterval
-        ].filter(int => !isNaN(int)),
-        vaultIntervalArray: [
-          ...total.vaultIntervalArray,
-          calcData.meanVaultTimeInterval
-        ].filter(int => !isNaN(int))
-      };
-      const {
-        scaleIntervalArray,
-        switchIntervalArray,
-        vaultIntervalArray,
-        ...rest
-      } = data;
-      if (index === arr.length - 1)
-        return {
-          ...rest,
-          team: calcData.team,
-          meanScaleTimeInterval:
-            scaleIntervalArray.length !== 0
-              ? math.mean(scaleIntervalArray)
-              : "none",
-          stdScaleTimeInterval:
-            scaleIntervalArray.length !== 0
-              ? math.std(scaleIntervalArray)
-              : "none",
-          meanSwitchTimeInterval:
-            switchIntervalArray.length !== 0
-              ? math.mean(switchIntervalArray)
-              : "none",
-          stdSwitchTimeInterval:
-            switchIntervalArray.length !== 0
-              ? math.std(switchIntervalArray)
-              : "none",
-          meanVaultTimeInterval:
-            vaultIntervalArray.length !== 0
-              ? math.mean(vaultIntervalArray)
-              : "none",
-          stdVaultTimeInterval:
-            switchIntervalArray.length !== 0
-              ? math.std(switchIntervalArray)
-              : "none"
-        };
-      return data;
-    },
-    {
-      scaleIntervalArray: [],
-      switchIntervalArray: [],
-      vaultIntervalArray: []
-    }
-  );
+  Array.isArray(dataArray)
+    ? dataArray.map(data => calculateMeans(data)).reduce(
+        (total, calcData, index, arr) => {
+          const data = {
+            ...total,
+            scaleIntervalArray: [
+              ...total.scaleIntervalArray,
+              calcData.meanScaleTimeInterval
+            ].filter(int => !isNaN(int)),
+            switchIntervalArray: [
+              ...total.switchIntervalArray,
+              calcData.meanSwitchTimeInterval
+            ].filter(int => !isNaN(int)),
+            vaultIntervalArray: [
+              ...total.vaultIntervalArray,
+              calcData.meanVaultTimeInterval
+            ].filter(int => !isNaN(int))
+          };
+          const {
+            scaleIntervalArray,
+            switchIntervalArray,
+            vaultIntervalArray,
+            ...rest
+          } = data;
+          if (index === arr.length - 1)
+            return {
+              ...rest,
+              team: calcData.team,
+              meanScaleTimeInterval:
+                scaleIntervalArray.length !== 0
+                  ? math.mean(scaleIntervalArray)
+                  : "none",
+              stdScaleTimeInterval:
+                scaleIntervalArray.length !== 0
+                  ? math.std(scaleIntervalArray)
+                  : "none",
+              meanSwitchTimeInterval:
+                switchIntervalArray.length !== 0
+                  ? math.mean(switchIntervalArray)
+                  : "none",
+              stdSwitchTimeInterval:
+                switchIntervalArray.length !== 0
+                  ? math.std(switchIntervalArray)
+                  : "none",
+              meanVaultTimeInterval:
+                vaultIntervalArray.length !== 0
+                  ? math.mean(vaultIntervalArray)
+                  : "none",
+              stdVaultTimeInterval:
+                switchIntervalArray.length !== 0
+                  ? math.std(vaultIntervalArray)
+                  : "none"
+            };
+          return data;
+        },
+        {
+          scaleIntervalArray: [],
+          switchIntervalArray: [],
+          vaultIntervalArray: []
+        }
+      )
+    : null;

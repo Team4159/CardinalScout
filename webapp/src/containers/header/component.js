@@ -34,6 +34,30 @@ const conditionalRoutes = (loggedIn, push, closeDrawer, closePath) => {
         >
           pitscout
         </List.LinkItem>
+        <List.LinkItem
+          onClick={() => {
+            push("/images");
+            closeDrawer();
+          }}
+        >
+          images
+        </List.LinkItem>
+        <List.LinkItem
+          onClick={() => {
+            push("/ranks");
+            closeDrawer();
+          }}
+        >
+          rankings
+        </List.LinkItem>
+        <List.LinkItem
+          onClick={() => {
+            push("/teams");
+            closeDrawer();
+          }}
+        >
+          teams
+        </List.LinkItem>
       </div>
     );
   return null;

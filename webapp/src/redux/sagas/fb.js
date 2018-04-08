@@ -40,10 +40,18 @@ function* saveNewUltra() {
     const user = yield select(state => state.auth.user);
     const newUltra = yield select(state => state.ultra);
     try {
-      yield call(rsf.database.create, "teams/" + newUltra.team + "/ultra", {
-        creator: user ? user.displayName : null,
-        data: newUltra
-      });
+      for (let team of newUltra.teams) {
+        const data = {
+          ...newUltra,
+          team,
+          driverSkill: newUltra.driverSkill[team],
+          comments: newUltra.comments[team]
+        };
+        yield call(rsf.database.create, "/teams/" + team + "/ultra", {
+          creator: user ? user.displayName : null,
+          data
+        });
+      }
       yield put(message("Ultra Data Successfully Saved!!!!!"));
       yield put(showSnack());
       yield call(delay, 5000);
@@ -130,7 +138,6 @@ function* uploadTeamImage(action) {
     yield call(delay, 5000);
     yield put(showSnack());
   } catch (error) {
-    yield call(rsf.database.update, filePath + "/imageUrls", urls);
     yield put(message("Image Unsuccessfully Saved :( Please try again"));
     yield put(showSnack());
     yield call(delay, 5000);

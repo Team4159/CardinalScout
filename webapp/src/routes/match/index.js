@@ -1,7 +1,7 @@
 //@flow
 import { h } from "preact";
 import { connect } from "react-redux";
-import { team, match, reset as resetData } from "../../redux/actions/data";
+import { team, match } from "../../redux/actions/data";
 import { start, reset } from "../../redux/actions/func";
 import { push } from "react-router-redux";
 import Match from "./component";
@@ -18,7 +18,6 @@ const mDTP = dispatch => ({
   push: path => dispatch(push(path)),
   reset: () => {
     dispatch(reset());
-    dispatch(resetData());
   }
 });
 

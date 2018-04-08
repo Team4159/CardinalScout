@@ -39,7 +39,7 @@ const Ultra = ({
         <Slider
           onInput={event => forceLevel(event.detail.value)}
           discrete
-          min={1}
+          min={0}
           max={3}
           step={1}
           className={style.slider}
@@ -59,7 +59,7 @@ const Ultra = ({
           <Slider
             onInput={event => levitateLevel(event.detail.value)}
             discrete
-            min={1}
+            min={0}
             max={3}
             step={1}
             className={style.slider}
@@ -81,7 +81,7 @@ const Ultra = ({
         <Slider
           onInput={event => boostLevel(event.detail.value)}
           discrete
-          min={1}
+          min={0}
           max={3}
           step={1}
           className={style.slider}

@@ -5,31 +5,43 @@ import { dataToArray } from "../../../util";
 import {
   calculateData,
   calculateTotalData,
-  convertDataObjectToArray
+  convertDataObjectToArray,
+  calculateDriverSkill
 } from "../../../calculations";
 const getFbteam = (state, props) =>
   state.fb.teams ? state.fb.teams[props.match.params.team] : null;
 const dataSelector = createSelector(
   [getFbteam],
   team =>
-    team.data
+    typeof team.data === "object"
       ? dataToArray(team.data).map(data => ({
           ...data,
           data: calculateData(data.data)
         }))
       : null
 );
-const totalDataSelector = createSelector([getFbteam], team =>
-  calculateTotalData(convertDataObjectToArray(team.data))
-);
+const totalDataSelector = createSelector([getFbteam], team => ({
+  ...calculateTotalData(convertDataObjectToArray(team.data)),
+  meanDriverSkill: calculateDriverSkill(team.ultra)
+}));
 const imageSelector = createSelector(
   getFbteam,
   data => (data ? data.imageUrls : null)
 );
+const ultraDataSelector = createSelector(
+  getFbteam,
+  data => (data.ultra ? dataToArray(data.ultra) : null)
+);
+const pitScoutSelector = createSelector(
+  getFbteam,
+  data => (data.pitscout ? dataToArray(data.pitscout) : null)
+);
 const mSTP = (state, props) => ({
   totalData: totalDataSelector(state, props),
   data: dataSelector(state, props),
-  imageUrls: imageSelector(state, props)
+  imageUrls: imageSelector(state, props),
+  ultraData: ultraDataSelector(state, props),
+  pitscoutData: pitScoutSelector(state, props)
 });
 const mDTP = state => ({});
 
