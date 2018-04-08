@@ -102,6 +102,10 @@ const convertDataObjectToArray = dataObject =>
   Object.keys(dataObject)
     .map(key => dataObject[key])
     .map(data => data.data)
+const convertDataObjectToUltraArray = dataObject =>
+  Object.keys(dataObject)
+    .map(key => dataObject[key])
+    .map(data => data.ultra)
 const calculateTotalData = dataArray =>
   dataArray.map(data => calculateMeans(data)).reduce(
     (total, calcData, index, arr) => {
@@ -163,10 +167,30 @@ const calculateTotalData = dataArray =>
       vaultIntervalArray: []
     }
   )
+const calculateDriverSkill = dataObject =>
+  typeof dataObject.ultra === "object"
+    ? math.mean(
+        convertDataObjectToArray(dataObject.ultra)
+          .map(ultra => ultra.driverSkill)
+          .filter(driverSkill => !isNaN(driverSkill))
+      )
+    : null
+const calculateTotalDriverSkill = teamObject =>
+  Object.keys(teamObject)
+    .map(key => teamObject[key])
+    .filter(team => typeof team.ultra === "object")
+    .map(team => ({
+      driverSkill: calculateDriverSkill(team),
+      team: team.team_number
+    }))
 module.exports = {
   objectToValueArray,
   count,
   calculateData,
   calculateTotalData,
-  convertDataObjectToArray
+  convertDataObjectToArray,
+  convertDataObjectToUltraArray,
+  calculateDriverSkill,
+  calculateTotalDriverSkill,
+  sortByKey
 }

@@ -36,20 +36,47 @@ const getMatches = async () => {
 }
 const {
   convertDataObjectToArray,
-  calculateData,
-  calculateTotalData
+  convertDataObjectToUltraArray,
+  calculateTotalData,
+  calculateTotalDriverSkill,
+  calculateDriverSkill,
+  sortByKey
 } = require("./calc.js")
-jsonfile.readFile("./cache/data.json", (err, data) => {
-  if (err) console.log(err)
-  const exampleDataObject = data["4159"].data
-  const dataArray = convertDataObjectToArray(exampleDataObject)
-  const calcData = Object.keys(data)
-    .filter(key => !isNaN(key))
-    //gets the data Object from each team object
-    .map(key => data[key].data)
-    .filter(d => typeof d === "object")
-    .map(d => convertDataObjectToArray(d))
-    .map(dataArray => calculateTotalData(dataArray))
-  console.log(calcData)
-  return null
-})
+const teams = [
+  4990,
+  5499,
+  4904,
+  668,
+  846,
+  670,
+  4669,
+  5924,
+  1072,
+  4091,
+  6883,
+  604,
+  3482,
+  852,
+  4255,
+  6238,
+  4186,
+  1967,
+  1351,
+  8
+]
+const a = async () => {
+  let data = []
+  for (let i = 0; i < teams.length; i++) {
+    data.push(await getTeamData(teams[i]))
+  }
+  console.log(
+    sortByKey(
+      "driverSkill",
+      data.map(data => ({
+        driverSkill: calculateDriverSkill(data),
+        team: data.team_number
+      }))
+    ).map(team => team.team)
+  )
+}
+a()
